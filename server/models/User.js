@@ -23,15 +23,15 @@ const userSchema = new mongoose.Schema({
             required: true
         },
         followersid:{
-            type: Array,
+            type: [mongoose.Schema.Types.ObjectId],
             default: []
         },
         followingid:{
-            type: Array,
+            type: [mongoose.Schema.Types.ObjectId],
             default: []
         },
         postsid: {
-            type: Array,
+            type: [mongoose.Schema.Types.ObjectId],
             default: []
         },
         bio: String
