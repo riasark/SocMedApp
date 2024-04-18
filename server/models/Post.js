@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
-const postSchema = mongoose.Schema({
-    creatorid: Number, 
+const postSchema = mongoose.Schema({ 
     likescount: Number, 
     timestamp: Date,
     text: String,
@@ -12,5 +11,6 @@ const postSchema = mongoose.Schema({
     parentpost: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Posts"
-    }
+    },
+    creator: String,
 })
