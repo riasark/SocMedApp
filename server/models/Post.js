@@ -14,3 +14,5 @@ const postSchema = mongoose.Schema({
     },
     creator: String,
 })
+
+const Post =  mongoose.model('Post', schema)
