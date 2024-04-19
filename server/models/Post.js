@@ -1,18 +1,33 @@
 import mongoose from "mongoose";
 
-const postSchema = mongoose.Schema({ 
-    likescount: Number, 
-    timestamp: Date,
-    text: String,
-    childpost: {
+const postSchema = mongoose.Schema({
+    timestamp: {
+        type: Date,
+        required: true
+    }, 
+    community: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Communities"
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users"
+    },
+    likes: {
+        type: Number, 
+        default: 0
+    },
+    comments: {
         type: [mongoose.Schema.Types.ObjectId],
         default: []
     },
-    parentpost: {
+    is_quote: Boolean,
+    quote_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Posts"
-    },
-    creator: String,
-})
+    }
+});
 
-const Post =  mongoose.model('Post', schema)
+const Post = mongoose.model('Post', schema);
+
+module.exports = Post;
