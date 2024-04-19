@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-        communities: [mongoose.Schema.Types.ObjectId],
+        communities: {
+            type: [mongoose.Schema.Types.ObjectId],
+            default: []
+        },
         username:{
             type: String, 
             required: true, 
@@ -14,10 +17,13 @@ const userSchema = new mongoose.Schema({
         },
         fname: String, 
         lname: String, 
-        posts: [mongoose.Schema.Types.ObjectId],
+        posts: {
+            type: [mongoose.Schema.Types.ObjectId],
+            default: []
+        },
         bio: String
 })
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

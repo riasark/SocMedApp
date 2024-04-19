@@ -24,10 +24,11 @@ const postSchema = mongoose.Schema({
     is_quote: Boolean,
     quote_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Posts"
+        ref: "Posts",
+        default: null
     }
 });
 
 const Post = mongoose.model('Post', postSchema);
 
-module.exports = Post;
+export default Post;
