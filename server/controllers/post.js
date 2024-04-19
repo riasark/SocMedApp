@@ -1,4 +1,5 @@
-import Post from "../models/Post";
+import Post from "../models/Post.js";
+import User from "../models/User.js"
 
 export const newPost = async (req, res) => {
     try {
@@ -60,6 +61,32 @@ export const userFeed = async (req, res) => {
         const userfeed = await Post.find({ author });
         res.json(userfeed);
     }catch(err){
+        res.json({message: err.message});
+    }
+}
+
+export const like = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { author } = req.body;
+        const post = await Post.findById(id);
+        post.likes += 1;
+        await post.save();
+        res.json(post);
+    }catch(err){
+        res.json({message: err.message})
+    }
+}
+
+export const comment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { author, content } = req.body;
+        const post = await Post.findById(id);
+        const user = await User.findById(author);
+        const name = user.fname;
+        post.comments.push()
+    } catch (err){
         res.json({message: err.message});
     }
 }
