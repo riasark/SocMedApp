@@ -26,7 +26,8 @@ const postSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Post",
         default: null
-    }
+    },
+    content: String
 });
 
 const Post = mongoose.model('Post', postSchema);
