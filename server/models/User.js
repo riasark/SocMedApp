@@ -17,10 +17,6 @@ const userSchema = new mongoose.Schema({
         },
         fname: String, 
         lname: String, 
-        posts: {
-            type: [mongoose.Schema.Types.ObjectId],
-            default: []
-        },
         bio: String
 })
 
