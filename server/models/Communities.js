@@ -5,3 +5,7 @@ const communitySchema = mongoose.Schema({
     list_of_users: [mongoose.Schema.Types.ObjectId],
     posts: [mongoose.Schema.Types.ObjectId]
 })
+
+const Community = mongoose.model('Community', communitySchema);
+
+export default Community;
