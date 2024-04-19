@@ -6,6 +6,6 @@ const hobbySchema = mongoose.Schema({
     posts: Array
 })
 
-const Hobby = mongoose.model('Hobby', communitySchema);
+const Hobby = mongoose.model('Hobby', hobbySchema);
 
 export default Hobby;

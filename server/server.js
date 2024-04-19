@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import User from "./models/User.js"
-import Hobby from "./models/Hobbies.js"
+import Hobby from "./models/Hobby.js"
 import Post from "./models/Post.js"
 
 dotenv.config()
@@ -35,7 +35,7 @@ app.get('/users', async (req, res) => {
 app.get('/hobbies', async (req, res) => {
     try {
         const hobbies = await Hobby.find();
-        res.status(200).json(communities); 
+        res.status(200).json(hobbies); 
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
