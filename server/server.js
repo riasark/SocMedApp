@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import User from "./models/User.js"
-import Community from "./models/Communities.js"
+import Hobby from "./models/Hobbies.js"
 import Post from "./models/Post.js"
 
 dotenv.config()
@@ -32,9 +32,9 @@ app.get('/users', async (req, res) => {
     }
 });
 
-app.get('/communities', async (req, res) => {
+app.get('/hobbies', async (req, res) => {
     try {
-        const communities = await Community.find();
+        const hobbies = await Hobby.find();
         res.status(200).json(communities); 
     } catch (error) {
         console.error(error);

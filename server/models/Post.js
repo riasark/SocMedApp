@@ -5,13 +5,13 @@ const postSchema = mongoose.Schema({
         type: Date,
         required: true
     }, 
-    community: {
+    hobby: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Communities"
+        ref: "Hobby"
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Users"
+        ref: "User"
     },
     likes: {
         type: Number, 
@@ -24,7 +24,7 @@ const postSchema = mongoose.Schema({
     is_quote: Boolean,
     quote_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Posts",
+        ref: "Post",
         default: null
     }
 });

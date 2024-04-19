@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-        communities: {
+        hobbies: {
             type: [mongoose.Schema.Types.ObjectId],
             default: []
         },
