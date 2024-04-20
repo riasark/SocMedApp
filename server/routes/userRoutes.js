@@ -1,5 +1,5 @@
 import express from "express";
-import { hobbyFeed, userFeed, userHobbyFeed } from "../controllers/post.js";
+import { userFeed, userHobbyFeed } from "../controllers/post.js";
 
 const routes = express.Router()
 
