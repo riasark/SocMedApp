@@ -1,8 +1,9 @@
 import express from "express";
-import {newPost, doublePost, userFeed, like, comment, deletePost} from "../controllers/post.js"
+import { userFeed, hobbyFeed} from "../controllers/post.js"
 
 const router = express.Router();
 
 router.get("/:author", userFeed);
+router.get("/:author/hobbies", hobbyFeed);
 
 export default router;

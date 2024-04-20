@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import User from "../models/User.js";
 
 export const newPost = async (req, res) => {
     try {
@@ -47,9 +48,17 @@ export const doublePost = async (req, res) => {
 
 export const hobbyFeed = async(req, res) => {
     try {
-        const { hobby } = req.body;
-        const hobbyposts = await Post.find({ hobby });
-        res.json(hobbyposts);
+        const { author } = req.params;
+        const user = await User.findById(author);
+        const hobbies = user.hobbies;
+        let allposts = []
+        for (const hobby of hobbies){
+            const hobbyposts = await Post.find({ hobby });
+            for (const hob of hobbyposts){
+                allposts.push(hob)
+            }
+        }
+        res.json(allposts);
     }catch(err){
         res.json({message: err.message});
     }
