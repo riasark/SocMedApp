@@ -7,6 +7,8 @@ import User from "./models/User.js"
 import Hobby from "./models/Hobby.js"
 import Post from "./models/Post.js"
 import postRoutes from "./routes/postRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
+
 
 dotenv.config()
 
@@ -22,6 +24,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((error) => console.log(`${error} did not connect`));
 
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
 
 /* CHECKING API CONNECTIONS */
 app.get('/users', async (req, res) => {

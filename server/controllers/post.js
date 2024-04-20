@@ -46,7 +46,17 @@ export const doublePost = async (req, res) => {
     }
 }
 
-export const hobbyFeed = async(req, res) => {
+export const hobbyFeed = async (req, res) => {
+    try {
+        const { hobby } = req.params; 
+        const posts = await Post.find({ hobby });
+        res.json(posts);
+    }catch(err){
+        res.json({message: err.message});
+    }
+}
+
+export const userHobbyFeed = async(req, res) => {
     try {
         const { author } = req.params;
         const user = await User.findById(author);
