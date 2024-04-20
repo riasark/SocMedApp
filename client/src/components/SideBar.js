@@ -8,7 +8,7 @@ function SideBar() {
     // Fetch user's hobbies from the server
     const fetchUserHobbies = async () => {
       try {
-        const userId = "662347f1235d0f8b09679278";
+        const userId = "662348ec235d0f8b09679279";
         const response = await axios.get(`http://localhost:3030/users/${userId}`); 
         setHobbies(response.data);
       } catch (error) {
@@ -53,7 +53,7 @@ function SideBar() {
             href="#"
             aria-label="Hobbies"
           >
-            Hobbies
+            Your Hobbies
           </a>
         </div>
         <nav
@@ -67,22 +67,7 @@ function SideBar() {
                   className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-700 dark:text-white"
                   href={`http://localhost:3030/hobbies/${hobby._id}`}
                 >
-                  <svg
-                    className="size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                  {hobby}
+                {hobby}
                 </a>
               </li>
             ))}
