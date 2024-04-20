@@ -18,7 +18,7 @@ const postSchema = mongoose.Schema({
         default: 0
     },
     comments: {
-        type: [mongoose.Schema.Types.ObjectId],
+        type: Array,
         default: []
     },
     is_quote: Boolean,
