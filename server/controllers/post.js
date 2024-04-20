@@ -83,10 +83,19 @@ export const comment = async (req, res) => {
         const { id } = req.params;
         const { author, content } = req.body;
         const post = await Post.findById(id);
-        const user = await User.findById(author);
-        const name = user.fname;
-        post.comments.push()
+        post.comments.push(content);
+        await post.save();
     } catch (err){
+        res.json({message: err.message});
+    }
+}
+
+export const deletePost = async (req, res) => {
+    try {
+        const { id } = req.body; 
+        const post = await Post.findById(id);
+        await post.remove();
+    } catch(err){
         res.json({message: err.message});
     }
 }
