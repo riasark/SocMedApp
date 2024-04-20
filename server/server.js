@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((error) => console.log(`${error} did not connect`));
 
 app.use('/posts', postRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 app.use('/hobbies', hobbyRoutes);
 
 /* CHECKING API CONNECTIONS */
