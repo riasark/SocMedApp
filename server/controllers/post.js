@@ -2,7 +2,8 @@ import Post from "../models/Post.js";
 
 export const newPost = async (req, res) => {
     try {
-        const { author, content, hobby } = req.body;
+        const { author, hobby } = req.params;
+        const { content } = req.body;
         const timestamp = new Date();
         const post = new Post({
             timestamp: timestamp,
