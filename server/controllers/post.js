@@ -67,7 +67,7 @@ export const userFeed = async (req, res) => {
 export const like = async (req, res) => {
     try {
         const { id } = req.params;
-        const { author } = req.body;
+        const { author } = req.body
         const post = await Post.findById(id);
         post.likes += 1;
         await post.save();
@@ -80,7 +80,7 @@ export const like = async (req, res) => {
 export const comment = async (req, res) => {
     try {
         const { id } = req.params;
-        const { author, content } = req.body;
+        const { content } = req.body;
         const post = await Post.findById(id);
         post.comments.push(content);
         await post.save();
@@ -94,6 +94,7 @@ export const deletePost = async (req, res) => {
         const { id } = req.body; 
         const post = await Post.findById(id);
         await post.remove();
+        
     } catch(err){
         res.json({message: err.message});
     }
