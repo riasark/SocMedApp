@@ -3,10 +3,10 @@ import './App.css';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/LoginPage';
-
+import LoginPage from './pages/LoginPage.js';
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
+import HomePage from './pages/HomePage.js';
 // window.HSStaticMethods = {
 //   // Define the methods or properties of the interface
 //   // For example:
@@ -27,6 +27,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
         {/* Add other routes here */}
       </Routes>
     </Router>
