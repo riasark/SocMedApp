@@ -56,7 +56,7 @@ export const hobbyFeed = async(req, res) => {
 
 export const userFeed = async (req, res) => {
     try {
-        const { author } = req.body;
+        const { author } = req.params;
         const userfeed = await Post.find({ author });
         res.json(userfeed);
     }catch(err){
