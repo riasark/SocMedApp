@@ -21,7 +21,6 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
     app.listen(port, () => console.log(`Server Port: ${port}`));
 }).catch((error) => console.log(`${error} did not connect`));
 
-//ROUTES
 app.use('/posts', postRoutes);
 
 /* CHECKING API CONNECTIONS */

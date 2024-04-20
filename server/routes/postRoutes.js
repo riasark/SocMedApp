@@ -3,7 +3,6 @@ import {newPost, doublePost, userFeed, like, comment, deletePost} from "../contr
 
 const router = express.Router();
 
-// RETRIEVING DATA
 router.get("/:author", userFeed);
 
 export default router;
