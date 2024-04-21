@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 
 function LoginPage() {
+    const nav = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -11,9 +13,9 @@ function LoginPage() {
       e.preventDefault();
       try {
         const response = await axios.post('http://localhost:3030/login', { username, password });
-        console.log(response.data);
         if(response.data.username === username){
-            
+            console.log(response.data);
+            nav('/home');
         }   
       }catch(err){
         console.log(err);
