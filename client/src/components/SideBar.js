@@ -5,7 +5,6 @@ function SideBar() {
   const [hobbies, setHobbies] = useState([]);
 
   useEffect(() => {
-    // Fetch user's hobbies from the server
     const fetchUserHobbies = async () => {
       try {
         const userId = "662348ec235d0f8b09679279";
@@ -50,7 +49,7 @@ function SideBar() {
         <div className="px-6">
           <a
             className="flex-none text-xl font-semibold dark:text-white"
-            href="#"
+            href="https://localhost:3000/home"
             aria-label="Hobbies"
           >
             Your Hobbies
