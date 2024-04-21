@@ -19,9 +19,9 @@ export const userHobbies = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { username, pass } = req.body;
+        const { username, password } = req.body;
         const user = await User.findOne({ username });
-        if(user && pass == user.password){
+        if(user && password == user.password){
             res.json(user);
         }
         else{

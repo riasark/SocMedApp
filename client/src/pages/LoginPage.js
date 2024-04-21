@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function LoginPage() {
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -13,6 +12,9 @@ function LoginPage() {
       try {
         const response = await axios.post('http://localhost:3030/login', { username, password });
         console.log(response.data);
+        if(response.data.username === username){
+            
+        }   
       }catch(err){
         console.log(err);
       }
