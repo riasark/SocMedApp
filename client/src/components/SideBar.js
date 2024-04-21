@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function SideBar() {
+  const location = useLocation()
   const [hobbies, setHobbies] = useState([]);
 
   useEffect(() => {
     const fetchUserHobbies = async () => {
       try {
-        const userId = "662348ec235d0f8b09679279";
+        const queryParams = new URLSearchParams(location.search)
+        const userId = queryParams.get('userId');
         const response = await axios.get(`http://localhost:3030/users/${userId}`); 
-        setHobbies(response.data);
+        if(Array.isArray(response.data)){
+          setHobbies(response.data);
+        }  
+        else{
+          console.log(response.data)
+        }
       } catch (error) {
         console.error("Error fetching user hobbies:", error);
       }
     };
 
     fetchUserHobbies();
-  }, []);
+  }, [location.search]);
 
   return (
     <div>
