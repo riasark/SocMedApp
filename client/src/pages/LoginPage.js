@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function LoginPage() {
 
@@ -7,9 +8,14 @@ function LoginPage() {
 
     const handleUsernameChange = (e) => setUsername(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      // Add login logic here
+      try {
+        const response = await axios.post('http://localhost:3030/login', { username, password });
+        console.log(response.data);
+      }catch(err){
+        console.log(err);
+      }
     };
 
     return (

@@ -9,6 +9,7 @@ import Post from "./models/Post.js"
 import postRoutes from "./routes/postRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 import hobbyRoutes from "./routes/hobbyRoutes.js"
+import loginRoute from "./routes/loginRoute.js"
 
 
 dotenv.config()
@@ -27,6 +28,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
 app.use('/hobbies', hobbyRoutes);
+app.use('/login', loginRoute);
 
 /* CHECKING API CONNECTIONS */
 app.get('/users', async (req, res) => {
