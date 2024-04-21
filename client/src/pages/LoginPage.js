@@ -15,8 +15,7 @@ function LoginPage() {
         const response = await axios.post('http://localhost:3030/login', { username, password });
         if(response.data.username === username){
             console.log(response.data);
-            const url = `/home?userId=${response.data._id}`;
-            nav(url);
+            nav(`/home?userId=${response.data._id}`);
         }   
       }catch(err){
         console.log(err);
