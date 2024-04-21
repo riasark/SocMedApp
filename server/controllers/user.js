@@ -16,3 +16,13 @@ export const userHobbies = async (req, res) => {
         res.json({ message: err.message });
     }
 }
+
+export const login = async (req, res) => {
+    try {
+        const { username, pass } = req.body;
+        const user = await User.findOne({ username });
+        
+    }catch(err){
+        res.json({message: err.message});
+    }
+}
