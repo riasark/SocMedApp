@@ -21,7 +21,12 @@ export const login = async (req, res) => {
     try {
         const { username, pass } = req.body;
         const user = await User.findOne({ username });
-        
+        if(user && pass == user.password){
+            res.json(user);
+        }
+        else{
+            res.json({message: "Login unsuccessful."});
+        }
     }catch(err){
         res.json({message: err.message});
     }
