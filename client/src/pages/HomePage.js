@@ -1,9 +1,14 @@
 import React from "react";
 import SideBar from "../components/SideBar";
+import Header from "../components/Header";
 
 function HomePage() {
   return (
-   <SideBar></SideBar>
+    <div>
+      <Header></Header>
+      <SideBar></SideBar>
+    </div>
+    
   );
 }
 

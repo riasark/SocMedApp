@@ -19,7 +19,7 @@ function SideBar() {
   }, []);
 
   return (
-    <div>
+    <div className="z-40">
       <button
         type="button"
         className="text-gray-500 hover:text-gray-600"
