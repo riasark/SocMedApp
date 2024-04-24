@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function Feed() {
-    return (
-        <div className="relative"><h1>HI</h1></div>
-=======
 import Post from "./Post"
 import greendale from "../icons/greendale-flag.jpg"
 import troy from "../icons/troy.jpg"
@@ -23,7 +18,6 @@ function Feed() {
                 </div>
             </div>
         </div>
->>>>>>> page-test
     )
 }
 
