@@ -27,6 +27,7 @@ function SideBar() {
   }, [location.search]);
 
   return (
+<<<<<<< HEAD
     <div className="relative h-[730px] hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800 dark:border-neutral-700">
       <button
         type="button"
@@ -49,39 +50,37 @@ function SideBar() {
           ></path>
         </svg>
       </button>
+=======
+    <div id="application-sidebar" class="hs-overlay [--auto-close:lg]
+      hs-overlay-open:translate-x-0
+      -translate-x-full transition-all duration-300 transform
+      w-[260px]
+      hidden
+      fixed inset-y-0 start-0 z-[60]
+      bg-white border-e border-gray-200
+      lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
+      dark:bg-neutral-800 dark:border-neutral-700
+    ">
+  <div class="px-8 pt-4">
+    <h1 class="text-4xl font-extrabold dark:text-white">Your Hobbies</h1>
+  </div>
+>>>>>>> page-test
 
-      <div
-        id="docs-sidebar"
-        className="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800 dark:border-neutral-700"
-      >
-        <div className="px-6">
+  <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+    <ul className="space-y-1.5">
+      {hobbies.map((hobby) => (
+        <li>
           <a
-            className="flex-none text-xl font-semibold dark:text-white"
-            href="https://localhost:3000/home"
-            aria-label="Hobbies"
+            className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-700 dark:text-white"
+            href={`http://localhost:3030/hobbies/${hobby._id}`}
           >
-            Your Hobbies
+          {hobby}
           </a>
-        </div>
-        <nav
-          className="hs-accordion-group p-6 w-full flex flex-col flex-wrap"
-          data-hs-accordion-always-open
-        >
-          <ul className="space-y-1.5">
-            {hobbies.map((hobby) => (
-              <li>
-                <a
-                  className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-700 dark:text-white"
-                  href={`http://localhost:3030/hobbies/${hobby._id}`}
-                >
-                {hobby}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </div>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
   );
 }
 
