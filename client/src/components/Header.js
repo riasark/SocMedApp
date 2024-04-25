@@ -2,7 +2,6 @@ import troy from "../icons/troy.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-<<<<<<< HEAD
 function Header() {
   const [searchInput, setSearchInput] = useState("");
   const [allHobbies, setAllHobbies] = useState([]);
@@ -43,10 +42,6 @@ function Header() {
   }
 
   //console.log(allHobbies)
-=======
-function Header(props) {
-
->>>>>>> 114b217640b5359877d52a7bf1e461bf69abf0e9
     return (
         <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 sm:py-4 lg:ps-64 dark:bg-neutral-800 dark:border-neutral-700">
   <nav class="flex basis-full items-center w-full mx-auto px-4 sm:px-6" aria-label="Global">
