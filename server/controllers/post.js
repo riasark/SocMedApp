@@ -77,7 +77,7 @@ export const userHobbyFeed = async(req, res) => {
 export const userFeed = async (req, res) => {
     try {
         const { author } = req.params;
-        const userfeed = await Post.find({ author });
+        const userfeed = await Post.findAll({ author });
         res.json(userfeed);
     }catch(err){
         res.json({message: err.message});
