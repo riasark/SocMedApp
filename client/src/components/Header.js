@@ -1,6 +1,47 @@
 import troy from "../icons/troy.jpg"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Header() {
+  const [searchInput, setSearchInput] = useState("");
+  const [allHobbies, setAllHobbies] = useState([]);
+  const [finalSearch, setFinalSearch] = useState("");
+  // const hobbies = []
+  useEffect(() => {
+    const hobbies = async () => {
+      try{
+        const hob = await axios.get(`http://localhost:3030/hobbies`);
+        setAllHobbies(hob.data);
+      }  catch (error) {
+        console.error("Error fetching user hobbies:", error);
+      }
+    }
+    hobbies();
+  });
+  //console.log(allHobbies)
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      console.log('do validate');
+      const hobId = allHobbies.filter((hobby) => {return hobby.name.match(searchInput)})[0]
+      setFinalSearch(hobId._id)
+    }
+  }
+
+  //console.log(allHobbies)
+  console.log(searchInput)
+  console.log(finalSearch)
+  if (searchInput.length > 0) {
+      allHobbies.filter((hobby) => {
+      return hobby.name.match(searchInput);
+  });
+  }
+
+  //console.log(allHobbies)
     return (
         <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 sm:py-4 lg:ps-64 dark:bg-neutral-800 dark:border-neutral-700">
   <nav class="flex basis-full items-center w-full mx-auto px-4 sm:px-6" aria-label="Global">
@@ -28,7 +69,10 @@ function Header() {
           <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
             <svg class="flex-shrink-0 size-4 text-gray-400 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           </div>
-          <input type="text" id="icon" name="icon" class="py-2 px-4 ps-11 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Search"></input>
+          <input type="text" onChange={handleChange} value={searchInput} onKeyDown={handleEnter} id="icon" name="icon" class="py-2 px-4 ps-11 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Search"></input>
+          <div class="absolute z-50 w-full bg-white border border-gray-200 rounded-lg dark:bg-neutral-800 dark:border-neutral-700" data-hs-combo-box-output="">
+          <div class="max-h-72 rounded-b-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500" data-hs-combo-box-output-items-wrapper=""></div>
+          </div>
         </div>
       </div>
 
