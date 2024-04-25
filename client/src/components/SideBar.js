@@ -9,7 +9,7 @@ function SideBar() {
   useEffect(() => {
     const fetchUserHobbies = async () => {
       try {
-        const queryParams = new URLSearchParams(location.search)
+        const queryParams = new URLSearchParams(location.search);
         const userId = queryParams.get('userId');
         const response = await axios.get(`http://localhost:3030/users/${userId}`); 
         if(Array.isArray(response.data)){

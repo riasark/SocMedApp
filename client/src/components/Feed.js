@@ -21,10 +21,12 @@ function Feed() {
         const uName = [];
         const h = [];
         try {
-            const queryParams = new URLSearchParams(location.search)
+            const queryParams = new URLSearchParams(location.search);
+            console.log(queryParams.get('userId'));
             const userId = queryParams.get('userId');
             const response = await axios.get(`http://localhost:3030/users/${userId}/hobbyfeed`); 
             const users = await axios.get(`http://localhost:3030/users`);
+
             if(Array.isArray(response.data)){
             setPosts(response.data);
             for(const post of posts){
