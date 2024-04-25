@@ -1,6 +1,16 @@
 import User from "../models/User.js";
 import Hobby from "../models/Hobby.js"
 
+export const userprof = async (req, res) => {
+    try {
+        const { user } = req.params;
+        const userInfo = await User.findById(user);
+        res.json(userInfo);
+    }catch(err){
+        res.json({message: err.message});
+    }
+}
+
 export const userHobbies = async (req, res) => {
     try {
         const { user } = req.params;
