@@ -3,8 +3,8 @@ import User from "../models/User.js";
 
 export const newPost = async (req, res) => {
     try {
-        const { author, hobby } = req.params;
-        const { content } = req.body;
+        const { author } = req.params;
+        const { hobby, content } = req.body;
         const timestamp = new Date();
         const post = new Post({
             timestamp: timestamp,
