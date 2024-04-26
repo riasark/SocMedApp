@@ -17,19 +17,32 @@ function Profile(props) {
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
 
+    
+
+    let [userInfo, setUserInfo] = useState([]);
+    let [userHobbies, setUserHobbies] = useState([]);
+    let [userPosts, setUserPosts] = useState([]);
+
     useEffect(() => {
         const fetchHobbyFeed = async () => {
         const uName = [];
         const h = [];
         try {
             const queryParams = new URLSearchParams(location.search);
-            console.log(queryParams.get('userId'));
             const userId = queryParams.get('userId');
-            const response = await axios.get(`http://localhost:3030/users/${userId}/hobbyfeed`); 
+            const response = await axios.get(`http://localhost:3030/users/${userId}/specific`); 
+            setUserInfo(response.data);
+
+            const response2 = await axios.get(`http://localhost:3030/users/${userId}`);
+            setUserHobbies(response2.data);
+
+            const response3 = await axios.get(`http://localhost:3030/users/${userId}/feed`);
+            setUserPosts(response3.data);
+
             const users = await axios.get(`http://localhost:3030/users`);
 
-            if(Array.isArray(response.data)){
-            setPosts(response.data);
+            if(Array.isArray(response3.data)){
+            setPosts(response3.data);
             for(const post of posts){
                 for(const user of users.data){
                     if (user._id === post.author){
@@ -55,35 +68,36 @@ function Profile(props) {
         }
     };
     fetchHobbyFeed();
-  }, [location.search, posts]);
+  }, 
+  [location.search, posts]);
 
     return (
         <div class="w-full lg:ps-64">
              <div class="p-4 sm:p-6 space-y-4 sm:space-y-6 content-center">
                 <div class="text-center">
                     <img class="inline-block size-[150px] rounded-full" src={troy} alt="" />
-                    <h1 class="text-4xl font-extrabold dark:text-white">@Troy_Barnes</h1>
+                    <h1 class="text-4xl font-extrabold dark:text-white">@{userInfo.username}</h1>
+                    <h4 class="text-2xl font-bold dark:text-white">{userInfo.fname} {userInfo.lname}</h4>
                     <div className="flex flex-wrap mx-[250px] mt-5">
-                        {hobbies.map((hobby) => (
-                            <div className={`w-1/${hobbies.length} p-2`}>
+                        {userHobbies.map((hobby) => (
+                            <div className={`p-2`} style={{ width: `${100 / userHobbies.length}%` }}>
                                 <button className={`w-full rounded-full bg-red-100 hover:bg-red-200`}>
-                                    {hobby}
+                                    • {hobby}
                                 </button>
                             </div>
                         ))}
                     </div>
-                    {posts.map((post, index) => (
-                        <Post
-                            key={post._id} 
-                            pfp={troy}
-                            hobby_pic={greendale}
-                            username={'@' + username[index]}
-                            hobby={hobbies[index]}
-                            text={post.content}
-                        />
-                        ))}
                 </div>
-                
+                {posts.map((post, index) => (
+                    <Post
+                        key={post._id} 
+                        pfp={troy}
+                        hobby_pic={greendale}
+                        username={'@' + userInfo.username}
+                        hobby={hobbies[index]}
+                        text={post.content}
+                    />
+                ))}
                 {/* <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
                     <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
                         <h1>hi</h1>
