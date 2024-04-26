@@ -99,6 +99,7 @@ function Profile(props) {
                         username={'@' + userInfo.username}
                         hobby={hobbies[index]}
                         text={post.content}
+                        time={post.timestamp}
                     />
                 ))}
                 {/* <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
