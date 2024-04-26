@@ -7,11 +7,12 @@ import man from "../icons/man.jpg"
 import woman from "../icons/woman.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 function HobbyFeed() {
     // IDEA FOR ICONS: CHANGE DATABASE TO STORE THE NAME OF THE ICON THAT EACH USER IS ASSIGNED UPON
     // SIGNING UP, AND WHEN THE USER IS REETRIEVED, WE JUST PARSE WHAT NAME IT IS, AND THEN WE RETURN THAT
-    const location = useLocation()
+    const location = useLocation();
+    const nav = useNavigate();
     const [posts, setPosts] = useState([]);
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
@@ -58,13 +59,17 @@ function HobbyFeed() {
     fetchHobbyFeed();
   }, [location.search, posts]);
 
-    const joinHobby = () => {
+    const joinHobby = async () => {
     try {
-        if(isAlreadyJoined() == "Join Hobby"){
+        if(isAlreadyJoined() === "Join Hobby"){
             const queryParams = new URLSearchParams(location.search);
             const hobbyId = queryParams.get('hobbyId');
             const userId = queryParams.get('userId');
             //send hobbyId and userId to backend, a route that adds the user to the hobby
+            const isSuccess = await axios.patch(`http://localhost:3030/hobbies/${userId}/${hobbyId}`);
+            if(isSuccess){
+                nav(`/hobby?userId=${userId}&hobbyId=${hobbyId}`);
+            }
         }
         else{
             // Maybe have a modal pop up that says they've already joined?

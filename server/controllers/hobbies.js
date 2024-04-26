@@ -6,7 +6,7 @@ export const joinHobby = async (req, res) => {
         const { author, hobby } = req.params;
         const user = User.findById(author);
         user.hobbies.push(hobby);
-        res.json("Success"); 
+        res.json(true); 
     }catch(err){
         res.json({message: err.message});
     }
