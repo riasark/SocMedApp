@@ -1,8 +1,19 @@
-import troy from "../icons/troy.jpg"
+import troy from "../icons/troy.jpg";
 import React, { useState, useEffect } from "react";
+import CreatePost from "./CreatePost";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-function Header() {
+
+const Header = ({ onOpenModal }) => {
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const userId = queryParams.get('userId');
+
+  // const [hidden, setHidden] = useState([]);
+  // setHidden("hidden");
+  
   const [searchInput, setSearchInput] = useState("");
   const [allHobbies, setAllHobbies] = useState([]);
   const [finalSearch, setFinalSearch] = useState("");
@@ -23,6 +34,10 @@ function Header() {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
+
+  const displayModal = () => {
+    console.log("button click");
+  }
 
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
@@ -73,6 +88,16 @@ function Header() {
         {/* <button type="button" class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700">
           <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
         </button> */}
+        <div>
+            <button type="submit" onClick={onOpenModal} class="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              Post
+          </button>
+        </div>
+        
+
         <button type="button" class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700" data-hs-offcanvas="#hs-offcanvas-right">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
@@ -81,7 +106,7 @@ function Header() {
 
         
         <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
-          <a href="/">
+          <a href={`http://localhost:3000/profile?userId=${userId}`}>
             <button id="hs-dropdown-with-header" type="button" class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700">
               <img class="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-neutral-800" src={troy} alt="Image Description"></img>
             </button>
@@ -106,6 +131,8 @@ function Header() {
     </div>
   </nav>
 </header>
+
+          
     )
 }
 

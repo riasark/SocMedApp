@@ -1,6 +1,7 @@
 import React from "react";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
+import CreatePost from "../components/CreatePost";
 
 import Feed from "../components/Feed";
 import { useLocation } from "react-router-dom";
@@ -12,6 +13,16 @@ function HomePage() {
   const location = useLocation();
   const [userName, setUserName] = useState('');
   
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
     useEffect(() => {
       const fetchUserName = async () => {
         try {
@@ -38,11 +49,15 @@ function HomePage() {
 
   return (
     <div>
-      <Header username={userName}></Header>
-      <SideBar></SideBar>
-      <Feed></Feed>
-    </div>
-   
+      <div className={showModal ? "blur-lg" : ""}>
+        <Header username={userName} onOpenModal={handleOpenModal}></Header>
+        <SideBar></SideBar>
+        <Feed></Feed>
+      </div>
+      <div>
+        {showModal && <CreatePost onCloseModal={handleCloseModal} />}
+      </div>
+   </div>
   );
 }
 

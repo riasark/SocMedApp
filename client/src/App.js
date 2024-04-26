@@ -7,6 +7,9 @@ import LoginPage from './pages/LoginPage.js';
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
 import HomePage from './pages/HomePage.js';
+import HobbyPage from './pages/HobbyPage.js';
+import ProfilePage from './pages/ProfilePage.js';
+
 // window.HSStaticMethods = {
 //   // Define the methods or properties of the interface
 //   // For example:
@@ -28,6 +31,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/hobby" element={<HobbyPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         {/* Add other routes here */}
       </Routes>
     </Router>

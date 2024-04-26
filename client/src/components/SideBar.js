@@ -5,15 +5,22 @@ import { useLocation } from "react-router-dom";
 function SideBar() {
   const location = useLocation()
   const [hobbies, setHobbies] = useState([]);
+  const [hobbyIds, setHobbyIds] = useState([])
+  const queryParams = new URLSearchParams(location.search);
+  const userId = queryParams.get('userId');
 
   useEffect(() => {
     const fetchUserHobbies = async () => {
       try {
-        const queryParams = new URLSearchParams(location.search);
-        const userId = queryParams.get('userId');
+        const hold = []
         const response = await axios.get(`http://localhost:3030/users/${userId}`); 
         if(Array.isArray(response.data)){
           setHobbies(response.data);
+          for(const hobbyName of hobbies){
+            const id = await axios.post(`http://localhost:3030/hobbies/getId`, { hobbyName });
+            hold.push(id.data);
+          }
+          setHobbyIds(hold);
         }  
         else{
           console.log(response.data)
@@ -24,7 +31,7 @@ function SideBar() {
     };
 
     fetchUserHobbies();
-  }, [location.search]);
+  }, [location.search, userId, hobbyIds, hobbies]);
 
   return (
     <div id="application-sidebar" class="hs-overlay [--auto-close:lg]
@@ -43,11 +50,11 @@ function SideBar() {
 
   <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
     <ul className="space-y-1.5">
-      {hobbies.map((hobby) => (
+      {hobbies.map((hobby, index) => (
         <li>
           <a
             className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-700 dark:text-white"
-            href={`http://localhost:3030/hobbies/${hobby._id}`}
+            href={`http://localhost:3000/hobby?userId=${userId}&hobbyId=${hobbyIds[index]}`}
           >
           {hobby}
           </a>
