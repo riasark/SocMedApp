@@ -22,7 +22,6 @@ function HobbyFeed() {
         const h = [];
         try {
             const queryParams = new URLSearchParams(location.search);
-            console.log(queryParams.get('hobbyId'));
             const hobbyId = queryParams.get('hobbyId');
             const response = await axios.get(`http://localhost:3030/hobbies/${hobbyId}`); 
             const users = await axios.get(`http://localhost:3030/users`);
@@ -56,11 +55,37 @@ function HobbyFeed() {
     fetchHobbyFeed();
   }, [location.search, posts]);
 
+  const joinCommunity = () => {
+    try {
+        const queryParams = new URLSearchParams(location.search);
+        const hobbyId = queryParams.get('hobbyId');
+        const userId = queryParams.get('userId');
+        //send hobbyId and userId to backend, a route that adds the user to the hobby
+
+    } catch (error) {
+        console.error("Error sending message to backend", error);
+    }
+  }
+
     return (
         <div class="w-full lg:ps-64">
              <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
                     <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
+                        <div class="flex flex-wrap">
+                            <img class=" mx-4 inline-block size-[62px] rounded-full" src={greendale} alt="Image Description"></img>
+                            <h2 class="mt-2 text-4xl font-extrabold dark:text-white">{hobbies[0]}</h2>
+                            <div class="ml-5 mt-3.5">
+                                <button onClick={joinCommunity}  class="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>
+                                    Join Community
+                                </button>
+                            </div>
+                        </div>
+                    
+
                     {posts.map((post, index) => (
                         <Post
                             key={post._id} 
