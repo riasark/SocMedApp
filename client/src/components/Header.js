@@ -1,9 +1,14 @@
 import troy from "../icons/troy.jpg";
 import React, { useState, useEffect } from "react";
 import CreatePost from "./CreatePost";
+import { useLocation } from "react-router-dom";
 
 
 const Header = ({ onOpenModal }) => {
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const userId = queryParams.get('userId');
 
   // const [hidden, setHidden] = useState([]);
   // setHidden("hidden");
@@ -58,7 +63,7 @@ const Header = ({ onOpenModal }) => {
 
         
         <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
-          <a href="/">
+          <a href={`http://localhost:3000/profile?userId=${userId}`}>
             <button id="hs-dropdown-with-header" type="button" class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700">
               <img class="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-neutral-800" src={troy} alt="Image Description"></img>
             </button>

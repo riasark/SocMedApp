@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 const CreatePost = ({ onCloseModal }) => {
 
-    const location = useLocation()
+  const location = useLocation()
   const [hobbies, setHobbies] = useState([]);
   const [hid, setHid] = useState('');
   const [content, setContent] = useState('');
+  const nav = useNavigate();
 
-    const submitPost = () => {
+    const submitPost = async () => {
         console.log(`hid: ${hid}`);
         console.log(`content: ${content}`);
         // axios call to send info to backend
+        try {
+          const queryParams = new URLSearchParams(location.search);
+          const userId = queryParams.get('userId');
+          const response = await axios.post(`http://localhost:3030/posts/${userId}/newpost`, { hid, content });
+          console.log(response.data);
+          nav(`/home?userId=${userId}`);
+        }catch(err){
+          console.log(err);
+        }
         onCloseModal();
     }
 
