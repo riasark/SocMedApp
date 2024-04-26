@@ -8,5 +8,6 @@ const router = express.Router();
 router.post("/:author/newpost", newPost);
 router.get("/:author/feed", userFeed);
 router.get("/:author/hobbies", userHobbyFeed);
+router.post("/:author/newpost", newPost);
 
 export default router;

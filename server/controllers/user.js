@@ -27,6 +27,17 @@ export const userHobbies = async (req, res) => {
     }
 }
 
+export const joinHobby = async (req, res) => {
+    try {
+        const { user, hobby } = req.params;
+        const userInfo = await User.findById(user);
+        const hobbies = userInfo.hobbies;
+
+    }catch(err){
+        res.json({message: err.message});
+    }
+}
+
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
