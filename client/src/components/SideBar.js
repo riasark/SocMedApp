@@ -31,8 +31,7 @@ function SideBar() {
     };
 
     fetchUserHobbies();
-    console.log(hobbyIds);
-  }, [location.search, userId, hobbyIds]);
+  }, [location.search, userId, hobbyIds, hobbies]);
 
   return (
     <div id="application-sidebar" class="hs-overlay [--auto-close:lg]
