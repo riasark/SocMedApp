@@ -12,10 +12,12 @@ function HobbyFeed() {
     // IDEA FOR ICONS: CHANGE DATABASE TO STORE THE NAME OF THE ICON THAT EACH USER IS ASSIGNED UPON
     // SIGNING UP, AND WHEN THE USER IS REETRIEVED, WE JUST PARSE WHAT NAME IT IS, AND THEN WE RETURN THAT
     const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const hobbyId = queryParams.get('hobbyId');
+    const userId = queryParams.get('userId');
     const nav = useNavigate();
     const [posts, setPosts] = useState([]);
     const [username, setUsername] = useState([]);
-    const [hobbies, setHobbies] = useState([]);
     const [uh, setUHs] = useState([]);
     const [currHobby, setCurrHobby] = useState('');
 
@@ -24,8 +26,6 @@ function HobbyFeed() {
         const uName = [];
         const h = [];
         try {
-            const queryParams = new URLSearchParams(location.search);
-            const hobbyId = queryParams.get('hobbyId');
             const response = await axios.get(`http://localhost:3030/hobbies/${hobbyId}`); 
             const users = await axios.get(`http://localhost:3030/users`);
             const currHob = await axios.get(`http://localhost:3030/hobbies/${hobbyId}/info`);
@@ -35,21 +35,13 @@ function HobbyFeed() {
             for(const post of posts){
                 for(const user of users.data){
                     if (user._id === post.author){
-                        const hobbies = await axios.get(`http://localhost:3030/hobbies`)
-                        for(const hobby of hobbies.data){
-                            if(hobby._id === post.hobby){
-                                uName.push(user.username);
-                                h.push(hobby.name);
-                            }
-                        }
+                        uName.push(user.username);
                     }
                 }
             }
-            const userId = queryParams.get('userId');
             const userHobbies = await axios.get(`http://localhost:3030/users/${userId}`);
             setUHs(userHobbies.data);
             setUsername(uName);
-            setHobbies(h);
             }  
             else{
             console.log(response.data)
@@ -59,19 +51,20 @@ function HobbyFeed() {
         }
     };
     fetchHobbyFeed();
-  }, [location.search, posts]);
+  }, [hobbyId, location.search, posts, userId]);
 
     const joinHobby = async () => {
     try {
         if(isAlreadyJoined() === "Join Hobby"){
-            const queryParams = new URLSearchParams(location.search);
-            const hobbyId = queryParams.get('hobbyId');
-            const userId = queryParams.get('userId');
             //send hobbyId and userId to backend, a route that adds the user to the hobby
-            const isSuccess = await axios.patch(`http://localhost:3030/hobbies/${userId}/${hobbyId}`);
-            if(isSuccess){
+            const isSuccess = await axios.post(`http://localhost:3030/hobbies/6621e408934d6d8814669c35/6621c750006491c6a2a20d59`);
+            console.log(isSuccess);
+            /*
+            if(isSuccess[0]){
+                console.log(isSuccess[1]);
                 nav(`/hobby?userId=${userId}&hobbyId=${hobbyId}`);
             }
+            */
         }
         else{
             // Maybe have a modal pop up that says they've already joined?

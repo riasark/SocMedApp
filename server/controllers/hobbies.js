@@ -1,12 +1,16 @@
 import User from "../models/User.js";
 import Hobby from "../models/Hobby.js"
+import mongoose from "mongoose";
 
 export const joinHobby = async (req, res) => {
     try {
         const { author, hobby } = req.params;
-        const user = User.findById(author);
-        user.hobbies.push(hobby);
-        res.json(true); 
+        console.log(author);
+        const user = await User.findById({_id: author});
+        const hobbyId = new mongoose.Types.ObjectId(hobby);
+        user.hobbies.push(hobbyId);
+        await user.save();
+        res.json(["Success", user]); 
     }catch(err){
         res.json({message: err.message});
     }
