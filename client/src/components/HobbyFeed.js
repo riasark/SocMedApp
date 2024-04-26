@@ -15,6 +15,7 @@ function HobbyFeed() {
     const [posts, setPosts] = useState([]);
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
+    const [uh, setUHs] = useState([]);
 
     useEffect(() => {
         const fetchHobbyFeed = async () => {
@@ -41,7 +42,9 @@ function HobbyFeed() {
                     }
                 }
             }
-
+            const userId = queryParams.get('userId');
+            const userHobbies = await axios.get(`http://localhost:3030/users/${userId}`);
+            setUHs(userHobbies.data);
             setUsername(uName);
             setHobbies(h);
             }  
@@ -55,16 +58,31 @@ function HobbyFeed() {
     fetchHobbyFeed();
   }, [location.search, posts]);
 
-  const joinHobby = () => {
+    const joinHobby = () => {
     try {
-        const queryParams = new URLSearchParams(location.search);
-        const hobbyId = queryParams.get('hobbyId');
-        const userId = queryParams.get('userId');
-        //send hobbyId and userId to backend, a route that adds the user to the hobby
+        if(isAlreadyJoined() == "Join Hobby"){
+            const queryParams = new URLSearchParams(location.search);
+            const hobbyId = queryParams.get('hobbyId');
+            const userId = queryParams.get('userId');
+            //send hobbyId and userId to backend, a route that adds the user to the hobby
+        }
+        else{
+            // Maybe have a modal pop up that says they've already joined?
+        }
+        
 
     } catch (error) {
         console.error("Error sending message to backend", error);
     }
+  }
+  
+    const isAlreadyJoined  = () => {
+        if (uh.includes(hobbies[0])) {
+            return "Already Joined";
+        } else {
+            return "Join Hobby";
+        }
+        
   }
 
     return (
@@ -80,7 +98,7 @@ function HobbyFeed() {
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
-                                    Join Hobby
+                                    { isAlreadyJoined() }
                                 </button>
                             </div>
                         </div>
