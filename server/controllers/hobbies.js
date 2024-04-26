@@ -21,3 +21,13 @@ export const hobbyId = async (req, res) => {
         res.json({message: err.message});
     }
 }
+
+export const hobbyInfo = async (req, res) => {
+    try {
+        const { hobbyId } = req.params;
+        const hobby = await Hobby.findOne({_id: hobbyId});
+        res.json(hobby.name);
+    }catch(err){
+        res.json({message: err.message});
+    }
+}

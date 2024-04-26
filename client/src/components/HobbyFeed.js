@@ -17,6 +17,7 @@ function HobbyFeed() {
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
     const [uh, setUHs] = useState([]);
+    const [currHobby, setCurrHobby] = useState('');
 
     useEffect(() => {
         const fetchHobbyFeed = async () => {
@@ -27,9 +28,10 @@ function HobbyFeed() {
             const hobbyId = queryParams.get('hobbyId');
             const response = await axios.get(`http://localhost:3030/hobbies/${hobbyId}`); 
             const users = await axios.get(`http://localhost:3030/users`);
-
+            const currHob = await axios.get(`http://localhost:3030/hobbies/${hobbyId}/info`);
             if(Array.isArray(response.data)){
             setPosts(response.data);
+            setCurrHobby(currHob.data);
             for(const post of posts){
                 for(const user of users.data){
                     if (user._id === post.author){
@@ -82,7 +84,7 @@ function HobbyFeed() {
   }
   
     const isAlreadyJoined  = () => {
-        if (uh.includes(hobbies[0])) {
+        if (uh.includes(currHobby)) {
             return "Already Joined";
         } else {
             return "Join Hobby";
@@ -97,7 +99,7 @@ function HobbyFeed() {
                     <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
                         <div class="flex flex-wrap">
                             <img class=" mx-4 inline-block size-[62px] rounded-full" src={greendale} alt="Image Description"></img>
-                            <h2 class="mt-2 text-4xl font-extrabold dark:text-white">{hobbies[0]}</h2>
+                            <h2 class="mt-2 text-4xl font-extrabold dark:text-white">{currHobby}</h2>
                             <div class="ml-5 mt-3.5">
                                 <button onClick={joinHobby}  class="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -115,7 +117,7 @@ function HobbyFeed() {
                             pfp={troy}
                             hobby_pic={greendale}
                             username={'@' + username[index]}
-                            hobby={hobbies[index]}
+                            hobby={currHobby}
                             text={post.content}
                         />
                         ))}
