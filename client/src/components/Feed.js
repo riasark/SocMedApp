@@ -5,6 +5,10 @@ import annie from "../icons/annie.jpg"
 import britta from "../icons/britta.jpg"
 import man from "../icons/man.jpg"
 import woman from "../icons/woman.jpg"
+import boat from "../icons/boat.jpg"
+import camera from "../icons/camera.jpg"
+import coolgirl from "../icons/coolgirl.jpg"
+import coolguy from "../icons/coolguy.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -15,14 +19,15 @@ function Feed() {
     const [posts, setPosts] = useState([]);
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
+    const [pfps, setPFPS] = useState([]);
 
     useEffect(() => {
         const fetchHobbyFeed = async () => {
         const uName = [];
         const h = [];
+        const p = [];
         try {
             const queryParams = new URLSearchParams(location.search);
-            console.log(queryParams.get('userId'));
             const userId = queryParams.get('userId');
             const response = await axios.get(`http://localhost:3030/users/${userId}/hobbyfeed`); 
             const users = await axios.get(`http://localhost:3030/users`);
@@ -32,6 +37,7 @@ function Feed() {
             for(const post of posts){
                 for(const user of users.data){
                     if (user._id === post.author){
+                        p.push(user.pfp);
                         const hobbies = await axios.get(`http://localhost:3030/hobbies`)
                         for(const hobby of hobbies.data){
                             if(hobby._id === post.hobby){
@@ -42,7 +48,7 @@ function Feed() {
                     }
                 }
             }
-
+            setPFPS(p);
             setUsername(uName);
             setHobbies(h);
             }  
@@ -56,6 +62,36 @@ function Feed() {
     fetchHobbyFeed();
   }, [location.search, posts]);
 
+  const getPfp = (pic) => {
+    if (pic === "troy"){
+        return troy;
+    }
+    else if (pic === "annie"){
+        return annie;
+    }
+    else if (pic === "boat"){
+        return boat
+    }
+    else if (pic === "britta"){
+        return britta
+    }
+    else if (pic === "camera"){
+        return camera
+    }
+    else if (pic === "coolgirl"){
+        return coolgirl
+    }
+    else if (pic === "coolguy"){
+        return coolguy
+    }
+    else if (pic === "man"){
+        return man
+    }
+    else if (pic === "woman"){
+        return woman
+    }
+}
+
     return (
         <div class="w-full lg:ps-64">
              <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
@@ -64,7 +100,7 @@ function Feed() {
                     {posts.map((post, index) => (
                         <Post
                             key={post._id} 
-                            pfp={troy}
+                            pfp={getPfp(pfps[index])}
                             hobby_pic={greendale}
                             username={'@' + username[index]}
                             hobby={hobbies[index]}
