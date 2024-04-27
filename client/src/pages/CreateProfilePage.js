@@ -12,7 +12,7 @@ function CreateProfilePage() {
                         Create Your User Profile
                     </h1>
                     <p class="mt-1 text-gray-600 dark:text-neutral-600">
-                        Join An Endless Amount of Communities!
+                        Join An Endless Amount of Hobbies!
                     </p>
                 </div>
             </div>
