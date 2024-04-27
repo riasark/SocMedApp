@@ -105,6 +105,7 @@ function Feed() {
                             username={'@' + username[index]}
                             hobby={hobbies[index]}
                             text={post.content}
+                            time={post.timestamp}
                         />
                         ))}
                     </div>

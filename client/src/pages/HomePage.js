@@ -50,7 +50,7 @@ function HomePage() {
   return (
     <div>
       <div className={showModal ? "blur-lg" : ""}>
-        <Header username={userName} onOpenModal={handleOpenModal}></Header>
+        <Header onOpenModal={handleOpenModal}></Header>
         <SideBar></SideBar>
         <Feed></Feed>
       </div>
