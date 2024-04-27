@@ -1,8 +1,18 @@
 import React from "react";
-import DropDown from "../components/DropDown";
-import axios from 'axios';
+import { useState } from "react";
 
 function CreateProfilePage() {
+    const [chosen, setChosen] = useState('');
+    const hobbies = ["Art", "Gardening", "Stem", "Rock Climbing", "Music", "Movies", "Sports"];
+    const hid = [
+    '6621c71b006491c6a2a20d58', 
+    '6621c642006491c6a2a20d57', 
+    '6621c777006491c6a2a20d5a', 
+    '6622837c032c79bd9eb4fdf1',
+    '6621c750006491c6a2a20d59',
+    '6621c7b2006491c6a2a20d5c',
+    '6621c795006491c6a2a20d5b'
+    ];
 
     return (
         <div class="max-w-[85rem] px-4 py-2 sm:px-6 lg:px-8 lg:py-2 mx-auto">
@@ -56,7 +66,15 @@ function CreateProfilePage() {
                                 {/* <!-- End Grid --> */}
 
                                 <div>
-                                    <DropDown></DropDown>
+                                <form class="mt-2 max-w-lg mx-auto">
+                                    <label for="communities" class="block mb-2 text-sm font-medium text-gray-900 dark:text-neutral-700">Select an option</label>
+                                    <select onChange={(e) => setChosen(e.target.value)} id="communities" class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option select>Choose a hobby to start!</option>
+                                        {hobbies.map((hobby, index) => {
+                                            return <option value={hid[index]}>{hobby}</option>
+                                        })}
+                                    </select>
+                                </form>
                                 </div>
                                 <div>
                                     <label for="hs-about-contacts-1" class="block mb-2 text-sm text-gray-700 font-medium dark:text-neutral-700">Bio</label>
