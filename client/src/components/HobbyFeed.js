@@ -112,6 +112,7 @@ function HobbyFeed() {
                             username={'@' + username[index]}
                             hobby={currHobby}
                             text={post.content}
+                            time={post.timestamp}
                         />
                         ))}
                     </div>
