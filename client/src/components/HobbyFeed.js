@@ -74,6 +74,8 @@ function HobbyFeed() {
             */
         }
         else{
+            const isSuccess = await axios.post(`http://localhost:3030/hobbies/${userId}/${hobbyId}/leave`);
+            console.log(isSuccess);
             // Maybe have a modal pop up that says they've already joined?
         }
         
