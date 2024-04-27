@@ -1,6 +1,8 @@
 import React from "react";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
+import CreatePost from "../components/CreatePost";
+
 
 import HobbyFeed from "../components/HobbyFeed";
 import { useLocation } from "react-router-dom";
@@ -35,13 +37,28 @@ function HobbyPage() {
 //       fetchUserName();
 //     }, [location.search]);
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div>
-      <Header></Header>
-      <SideBar></SideBar>
-      <HobbyFeed></HobbyFeed>
+      <div className={showModal ? "blur-lg" : ""}>
+        <Header onOpenModal={handleOpenModal}></Header>
+        <SideBar></SideBar>
+        <HobbyFeed></HobbyFeed>
+      </div>
+      <div>
+        {showModal && <CreatePost onCloseModal={handleCloseModal} />}
+      </div>
     </div>
+    
    
   );
 }

@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import Hobby from "../models/Hobby.js"
+import mongoose from "mongoose";
 
 export const userprof = async (req, res) => {
     try {
@@ -37,6 +38,26 @@ export const login = async (req, res) => {
         else{
             res.json({message: "Login unsuccessful."});
         }
+    }catch(err){
+        res.json({message: err.message});
+    }
+}
+
+export const signup = async (req, res) => {
+    try {
+        const  {firstname, lastname, userName, password, chosen, profilepic} = req.body;
+        const hobby = new mongoose.Types.ObjectId(chosen);
+        const user = new User({
+           fname: firstname, 
+           lname: lastname, 
+           username: userName, 
+           password: password, 
+           hobbies: [hobby],
+           pfp: profilepic
+        })
+        await user.save();
+        console.log(user);
+        res.json(user);
     }catch(err){
         res.json({message: err.message});
     }

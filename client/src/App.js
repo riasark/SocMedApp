@@ -10,8 +10,7 @@ import HomePage from './pages/HomePage.js';
 import HobbyPage from './pages/HobbyPage.js';
 import ProfilePage from './pages/ProfilePage.js';
 import Calendar from './pages/Calendar.js';
-
-
+import CreateProfilePage from './pages/CreateProfilePage.js';
 // window.HSStaticMethods = {
 //   // Define the methods or properties of the interface
 //   // For example:
@@ -36,6 +35,7 @@ function App() {
         <Route path="/hobby" element={<HobbyPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/createProfile" element={<CreateProfilePage />} />
         {/* Add other routes here */}
       </Routes>
     </Router>

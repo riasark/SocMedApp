@@ -1,4 +1,12 @@
 import troy from "../icons/troy.jpg";
+import annie from "../icons/annie.jpg"
+import britta from "../icons/britta.jpg"
+import man from "../icons/man.jpg"
+import woman from "../icons/woman.jpg"
+import boat from "../icons/boat.jpg"
+import camera from "../icons/camera.jpg"
+import coolgirl from "../icons/coolgirl.jpg"
+import coolguy from "../icons/coolguy.jpg"
 import React, { useState, useEffect } from "react";
 import CreatePost from "./CreatePost";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,7 +25,7 @@ const Header = ({ onOpenModal }) => {
   
   const [searchInput, setSearchInput] = useState("");
   const [allHobbies, setAllHobbies] = useState([]);
-  const [finalSearch, setFinalSearch] = useState("");
+  const [userPfp, setPFP] = useState('');
   // const hobbies = []
   useEffect(() => {
     const hobbies = async () => {
@@ -28,7 +36,12 @@ const Header = ({ onOpenModal }) => {
         console.error("Error fetching user hobbies:", error);
       }
     }
+    const getpfp = async () => {
+      const user = await  axios.get(`http://localhost:3030/users/${userId}/specific`);
+      setPFP(user.data.pfp);
+    }
     hobbies();
+    getpfp();
   });
   //console.log(allHobbies)
 
@@ -39,13 +52,40 @@ const Header = ({ onOpenModal }) => {
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
       console.log('do validate');
-      const hobId = allHobbies.filter((hobby) => {return hobby.name.match(searchInput)})[0]
-      console.log(hobId);
-      setFinalSearch(hobId._id);
-      console.log(hobId._id);
+      const hobId = allHobbies.filter((hobby) => {return hobby.name.match(searchInput)})[0];
       nav(`/hobby?userId=${userId}&hobbyId=${hobId._id}`);
     }
   }
+
+  const pfp = () => {
+    if (userPfp === "troy"){
+        return troy;
+    }
+    else if (userPfp === "annie"){
+        return annie;
+    }
+    else if (userPfp === "boat"){
+        return boat
+    }
+    else if (userPfp === "britta"){
+        return britta
+    }
+    else if (userPfp === "camera"){
+        return camera
+    }
+    else if (userPfp === "coolgirl"){
+        return coolgirl
+    }
+    else if (userPfp === "coolguy"){
+        return coolguy
+    }
+    else if (userPfp === "man"){
+        return man
+    }
+    else if (userPfp === "woman"){
+        return woman
+    }
+}
 
   //console.log(allHobbies)
 
@@ -101,7 +141,7 @@ const Header = ({ onOpenModal }) => {
         <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
           <a href={`http://localhost:3000/profile?userId=${userId}`}>
             <button id="hs-dropdown-with-header" type="button" class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700">
-              <img class="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-neutral-800" src={troy} alt="Image Description"></img>
+              <img class="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-neutral-800" src={pfp()} alt="Image Description"></img>
             </button>
           </a>
           

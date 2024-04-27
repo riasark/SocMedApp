@@ -5,6 +5,10 @@ import annie from "../icons/annie.jpg"
 import britta from "../icons/britta.jpg"
 import man from "../icons/man.jpg"
 import woman from "../icons/woman.jpg"
+import boat from "../icons/boat.jpg"
+import camera from "../icons/camera.jpg"
+import coolgirl from "../icons/coolgirl.jpg"
+import coolguy from "../icons/coolguy.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -14,6 +18,7 @@ function Profile(props) {
 
     const location = useLocation()
     // const [posts, setPosts] = useState([]);
+    const [userPfp, setUserPfp] = useState('');
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
 
@@ -51,7 +56,7 @@ function Profile(props) {
                 });
     
                 setUserPosts(filteredPosts);
-    
+                setUserPfp(userInfo.pfp);
                 const uNames = [];
                 const hNames = [];
     
@@ -71,20 +76,48 @@ function Profile(props) {
             }
         };
         fetchHobbyFeed();
-    }, [location.search, filterHobby]);
+    }, [location.search, filterHobby, userInfo.pfp]);
     
-
+    const pfp = () => {
+        if (userPfp === "troy"){
+            return troy;
+        }
+        else if (userPfp === "annie"){
+            return annie;
+        }
+        else if (userPfp === "boat"){
+            return boat
+        }
+        else if (userPfp === "britta"){
+            return britta
+        }
+        else if (userPfp === "camera"){
+            return camera
+        }
+        else if (userPfp === "coolgirl"){
+            return coolgirl
+        }
+        else if (userPfp === "coolguy"){
+            return coolguy
+        }
+        else if (userPfp === "man"){
+            return man
+        }
+        else if (userPfp === "woman"){
+            return woman
+        }
+    }
     return (
         <div class="w-full lg:ps-64">
              <div class="p-4 sm:p-6 space-y-4 sm:space-y-6 content-center">
                 <div class="text-center">
-                    <img class="inline-block size-[150px] rounded-full" src={troy} alt="" />
+                    <img class="inline-block size-[150px] rounded-full" src={pfp()} alt="" />
                     <h1 class="text-4xl font-extrabold dark:text-white">@{userInfo.username}</h1>
                     <h4 class="text-2xl font-bold dark:text-white">{userInfo.fname} {userInfo.lname}</h4>
                     <div className="flex flex-wrap mx-[250px] mt-5">
                         {userHobbies.map((hobby) => (
                             <div className={`p-2`} style={{ width: `${100 / userHobbies.length}%` }}>
-                                <button onClick={() => filterBy(hobby)} className={"w-full rounded-full hover:bg-red-200 " + (filterHobby === hobby ? 'bg-red-200' : 'bg-red-100')}>
+                                <button onClick={() => filterBy(hobby)} className={"w-full rounded-full hover:bg-sky-200 " + (filterHobby === hobby ? 'bg-sky-200' : 'bg-sky-100')}>
                                     • {hobby}
                                 </button>
                             </div>
@@ -94,7 +127,7 @@ function Profile(props) {
                 {userPosts.map((post, index) => (
                     <Post
                         key={post._id} 
-                        pfp={troy}
+                        pfp={pfp()}
                         hobby_pic={greendale}
                         username={'@' + userInfo.username}
                         hobby={hobbies[index]}

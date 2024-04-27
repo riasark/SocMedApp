@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 export const joinHobby = async (req, res) => {
     try {
         const { author, hobby } = req.params;
-        console.log(author);
         const user = await User.findById({_id: author});
         const hobbyId = new mongoose.Types.ObjectId(hobby);
         user.hobbies.push(hobbyId);
@@ -15,6 +14,21 @@ export const joinHobby = async (req, res) => {
         res.json({message: err.message});
     }
 }
+
+export const leaveHobby = async (req, res) => {
+    try {
+        const { author, hobby } = req.params;
+        const user = await User.findById({_id: author});
+        const toDelete = new mongoose.Types.ObjectId(hobby);
+        const newState = user.hobbies.filter((hobbyId) => !hobbyId.equals(toDelete)); 
+        user.hobbies = newState;
+        await user.save();
+        res.json(["Success", user]);
+    } catch(err) {
+        res.json({message: err.message});
+    }
+}
+
 
 export const hobbyId = async (req, res) => {
     try {

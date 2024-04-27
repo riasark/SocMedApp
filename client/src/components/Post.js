@@ -1,6 +1,6 @@
 function Post(props) {
 
-    const date = new Date(props.time).toDateString();
+    const date = new Date(props.time).toLocaleString();
     // date.toDateString();
 
     return (
