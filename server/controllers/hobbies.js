@@ -15,6 +15,21 @@ export const joinHobby = async (req, res) => {
     }
 }
 
+export const leaveHobby = async (req, res) => {
+    try {
+        const { author, hobby } = req.params;
+        const user = await User.findById({_id: author});
+        const toDelete = new mongoose.Types.ObjectId(hobby);
+        const newState = user.hobbies.filter((hobbyId) => !hobbyId.equals(toDelete)); 
+        user.hobbies = newState;
+        await user.save();
+        res.json(["Success", user]);
+    } catch(err) {
+        res.json({message: err.message});
+    }
+}
+
+
 export const hobbyId = async (req, res) => {
     try {
         const { hobbyName } = req.body;
