@@ -5,6 +5,10 @@ import annie from "../icons/annie.jpg"
 import britta from "../icons/britta.jpg"
 import man from "../icons/man.jpg"
 import woman from "../icons/woman.jpg"
+import boat from "../icons/boat.jpg"
+import camera from "../icons/camera.jpg"
+import coolgirl from "../icons/coolgirl.jpg"
+import coolguy from "../icons/coolguy.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -20,11 +24,12 @@ function HobbyFeed() {
     const [username, setUsername] = useState([]);
     const [uh, setUHs] = useState([]);
     const [currHobby, setCurrHobby] = useState('');
+    const [pfps, setPFPS] = useState([]);
 
     useEffect(() => {
         const fetchHobbyFeed = async () => {
         const uName = [];
-        const h = [];
+        const pics = [];
         try {
             const response = await axios.get(`http://localhost:3030/hobbies/${hobbyId}`); 
             const users = await axios.get(`http://localhost:3030/users`);
@@ -36,12 +41,14 @@ function HobbyFeed() {
                 for(const user of users.data){
                     if (user._id === post.author){
                         uName.push(user.username);
+                        pics.push(user.pfp);
                     }
                 }
             }
             const userHobbies = await axios.get(`http://localhost:3030/users/${userId}`);
             setUHs(userHobbies.data);
             setUsername(uName);
+            setPFPS(pics);
             }  
             else{
             console.log(response.data)
@@ -85,6 +92,36 @@ function HobbyFeed() {
         
   }
 
+  const getPfp = (pic) => {
+    if (pic === "troy"){
+        return troy;
+    }
+    else if (pic === "annie"){
+        return annie;
+    }
+    else if (pic === "boat"){
+        return boat
+    }
+    else if (pic === "britta"){
+        return britta
+    }
+    else if (pic === "camera"){
+        return camera
+    }
+    else if (pic === "coolgirl"){
+        return coolgirl
+    }
+    else if (pic === "coolguy"){
+        return coolguy
+    }
+    else if (pic === "man"){
+        return man
+    }
+    else if (pic === "woman"){
+        return woman
+    }
+}
+
     return (
         <div class="w-full lg:ps-64">
              <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
@@ -107,7 +144,7 @@ function HobbyFeed() {
                     {posts.map((post, index) => (
                         <Post
                             key={post._id} 
-                            pfp={troy}
+                            pfp={getPfp(pfps[index])}
                             hobby_pic={greendale}
                             username={'@' + username[index]}
                             hobby={currHobby}
