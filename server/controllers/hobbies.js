@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 export const joinHobby = async (req, res) => {
     try {
         const { author, hobby } = req.params;
-        console.log(author);
         const user = await User.findById({_id: author});
         const hobbyId = new mongoose.Types.ObjectId(hobby);
         user.hobbies.push(hobbyId);

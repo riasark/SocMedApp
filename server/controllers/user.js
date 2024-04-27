@@ -41,3 +41,23 @@ export const login = async (req, res) => {
         res.json({message: err.message});
     }
 }
+
+export const signup = async (req, res) => {
+    try {
+        const { fname, lname, username, password, pfp, hobbyId } = req.body;
+        const hobby = new mongoose.Types.ObjectId(hobbyId);
+        const user = new User({
+           fname: fname, 
+           lname: lname, 
+           username: username, 
+           password: password, 
+           hobbies: [hobby],
+           pfp: pfp
+        })
+        await user.save();
+        console.log(user);
+        res.json(user);
+    }catch(err){
+        res.json({message: err.message});
+    }
+}
