@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function CreateProfilePage() {
+    const nav = useNavigate();
     const [chosen, setChosen] = useState('');
     const [profilepic, setProfilePic] = useState('');
     const [firstname, setFirstName] = useState('');
@@ -20,8 +23,17 @@ function CreateProfilePage() {
     '6621c795006491c6a2a20d5b'
     ];
 
-    const submitUser =  async () => {
-        
+    const submitUser =  async (e) => {
+        e.preventDefault();
+        try{
+            const response = await axios.post(`http://localhost:3030/users/newuser`, {firstname, lastname, userName, password, chosen, profilepic});
+            console.log(response);
+            if(response.data.username === userName){
+                nav('/login');
+            }
+        }catch(err){
+            console.log(err);
+        }
     }
 
     return (

@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import Hobby from "../models/Hobby.js"
+import mongoose from "mongoose";
 
 export const userprof = async (req, res) => {
     try {
@@ -44,15 +45,15 @@ export const login = async (req, res) => {
 
 export const signup = async (req, res) => {
     try {
-        const { fname, lname, username, password, pfp, hobbyId } = req.body;
-        const hobby = new mongoose.Types.ObjectId(hobbyId);
+        const  {firstname, lastname, userName, password, chosen, profilepic} = req.body;
+        const hobby = new mongoose.Types.ObjectId(chosen);
         const user = new User({
-           fname: fname, 
-           lname: lname, 
-           username: username, 
+           fname: firstname, 
+           lname: lastname, 
+           username: userName, 
            password: password, 
            hobbies: [hobby],
-           pfp: pfp
+           pfp: profilepic
         })
         await user.save();
         console.log(user);
