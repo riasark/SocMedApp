@@ -20,8 +20,8 @@ function CreateProfilePage() {
     '6621c795006491c6a2a20d5b'
     ];
 
-    const submitUser = async () => {
-        console.log(firstname, lastname, userName, password, chosen, profilepic);
+    const submitUser =  async () => {
+        
     }
 
     return (
