@@ -9,6 +9,7 @@ import { IStaticMethods } from "preline/preline";
 import HomePage from './pages/HomePage.js';
 import HobbyPage from './pages/HobbyPage.js';
 import ProfilePage from './pages/ProfilePage.js';
+
 // window.HSStaticMethods = {
 //   // Define the methods or properties of the interface
 //   // For example:

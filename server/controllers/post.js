@@ -1,11 +1,15 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import Hobby from "../models/Hobby.js"; 
 
 export const newPost = async (req, res) => {
     try {
-        const { author, hobby } = req.params;
-        const { content } = req.body;
+        const { author } = req.params;
+        const { hid, content } = req.body;
         const timestamp = new Date();
+        const theHobby = await Hobby.findOne({name: hid});
+        console.log(theHobby);
+        const hobbyId = theHobby._id;
         const post = new Post({
             timestamp: timestamp,
             author, 
@@ -13,12 +17,12 @@ export const newPost = async (req, res) => {
             comments: [], 
             is_quote: false, 
             quote_id: author, 
-            hobby, 
+            hobby: hobbyId, 
             content
         })
         await post.save();
-        const feed = await Post.find({hobby})
-        res.json(feed)
+        console.log(await  Post.find({author}))
+        res.json({message: "Success"});
     } catch(err){
         res.json({message: err.message})
     }
