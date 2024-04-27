@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
             max: 20
         },
         fname: String, 
-        lname: String, 
+        lname: String,
+        pfp: String,
         bio: String
 })
 
