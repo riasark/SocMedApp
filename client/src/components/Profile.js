@@ -117,7 +117,7 @@ function Profile(props) {
                     <div className="flex flex-wrap mx-[250px] mt-5">
                         {userHobbies.map((hobby) => (
                             <div className={`p-2`} style={{ width: `${100 / userHobbies.length}%` }}>
-                                <button onClick={() => filterBy(hobby)} className={"w-full rounded-full hover:bg-red-200 " + (filterHobby === hobby ? 'bg-red-200' : 'bg-red-100')}>
+                                <button onClick={() => filterBy(hobby)} className={"w-full rounded-full hover:bg-sky-200 " + (filterHobby === hobby ? 'bg-sky-200' : 'bg-sky-100')}>
                                     • {hobby}
                                 </button>
                             </div>
