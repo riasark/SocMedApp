@@ -9,6 +9,8 @@ import { IStaticMethods } from "preline/preline";
 import HomePage from './pages/HomePage.js';
 import HobbyPage from './pages/HobbyPage.js';
 import ProfilePage from './pages/ProfilePage.js';
+import Calendar from './pages/Calendar.js';
+
 
 // window.HSStaticMethods = {
 //   // Define the methods or properties of the interface
@@ -33,6 +35,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/hobby" element={<HobbyPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/calendar" element={<Calendar />} />
         {/* Add other routes here */}
       </Routes>
     </Router>
