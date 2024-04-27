@@ -13,63 +13,66 @@ function Profile(props) {
     // const hobbies = ["Art", "Gardening", "Stem"];
 
     const location = useLocation()
-    const [posts, setPosts] = useState([]);
+    // const [posts, setPosts] = useState([]);
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
-
-    
 
     let [userInfo, setUserInfo] = useState([]);
     let [userHobbies, setUserHobbies] = useState([]);
     let [userPosts, setUserPosts] = useState([]);
 
+    const [filterHobby, setFilterHobby] = useState('');
+
+    const filterBy = (hobby) => {
+        filterHobby === hobby ? setFilterHobby('') : setFilterHobby(hobby);
+    }
+
+
     useEffect(() => {
         const fetchHobbyFeed = async () => {
-        const uName = [];
-        const h = [];
-        try {
-            const queryParams = new URLSearchParams(location.search);
-            const userId = queryParams.get('userId');
-            const response = await axios.get(`http://localhost:3030/users/${userId}/specific`); 
-            setUserInfo(response.data);
-
-            const response2 = await axios.get(`http://localhost:3030/users/${userId}`);
-            setUserHobbies(response2.data);
-
-            const response3 = await axios.get(`http://localhost:3030/users/${userId}/feed`);
-            setUserPosts(response3.data);
-
-            const users = await axios.get(`http://localhost:3030/users`);
-
-            if(Array.isArray(response3.data)){
-            setPosts(response3.data);
-            for(const post of posts){
-                for(const user of users.data){
-                    if (user._id === post.author){
-                        const hobbies = await axios.get(`http://localhost:3030/hobbies`)
-                        for(const hobby of hobbies.data){
-                            if(hobby._id === post.hobby){
-                                uName.push(user.username);
-                                h.push(hobby.name);
-                            }
-                        }
+            try {
+                const queryParams = new URLSearchParams(location.search);
+                const userId = queryParams.get('userId');
+    
+                const [userInfoResponse, userHobbiesResponse, userPostsResponse, usersResponse, hobbiesResponse] = await Promise.all([
+                    axios.get(`http://localhost:3030/users/${userId}/specific`),
+                    axios.get(`http://localhost:3030/users/${userId}`),
+                    axios.get(`http://localhost:3030/users/${userId}/feed`),
+                    axios.get(`http://localhost:3030/users`),
+                    axios.get(`http://localhost:3030/hobbies`)
+                ]);
+    
+                setUserInfo(userInfoResponse.data);
+                setUserHobbies(userHobbiesResponse.data);
+    
+                const filteredPosts = userPostsResponse.data.filter(post => {
+                    const hobbyName = hobbiesResponse.data.find(hobby => hobby._id === post.hobby)?.name;
+                    return hobbyName === filterHobby || filterHobby === "";
+                });
+    
+                setUserPosts(filteredPosts);
+    
+                const uNames = [];
+                const hNames = [];
+    
+                for (const post of filteredPosts) {
+                    const user = usersResponse.data.find(user => user._id === post.author);
+                    const hobby = hobbiesResponse.data.find(hobby => hobby._id === post.hobby);
+                    if (user && hobby) {
+                        uNames.push(user.username);
+                        hNames.push(hobby.name);
                     }
                 }
+    
+                setUsername(uNames);
+                setHobbies(hNames);
+            } catch (error) {
+                console.error("Error fetching user hobbies:", error);
             }
-
-            setUsername(uName);
-            setHobbies(h);
-            }  
-            else{
-            console.log(response.data)
-            }
-        } catch (error) {
-            console.error("Error fetching user hobbies:", error);
-        }
-    };
-    fetchHobbyFeed();
-  }, 
-  [location.search, posts]);
+        };
+        fetchHobbyFeed();
+    }, [location.search, filterHobby]);
+    
 
     return (
         <div class="w-full lg:ps-64">
@@ -81,14 +84,14 @@ function Profile(props) {
                     <div className="flex flex-wrap mx-[250px] mt-5">
                         {userHobbies.map((hobby) => (
                             <div className={`p-2`} style={{ width: `${100 / userHobbies.length}%` }}>
-                                <button className={`w-full rounded-full bg-red-100 hover:bg-red-200`}>
+                                <button onClick={() => filterBy(hobby)} className={"w-full rounded-full hover:bg-red-200 " + (filterHobby === hobby ? 'bg-red-200' : 'bg-red-100')}>
                                     • {hobby}
                                 </button>
                             </div>
                         ))}
                     </div>
                 </div>
-                {posts.map((post, index) => (
+                {userPosts.map((post, index) => (
                     <Post
                         key={post._id} 
                         pfp={troy}
