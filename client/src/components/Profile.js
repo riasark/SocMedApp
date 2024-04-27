@@ -127,7 +127,7 @@ function Profile(props) {
                 {userPosts.map((post, index) => (
                     <Post
                         key={post._id} 
-                        pfp={troy}
+                        pfp={pfp()}
                         hobby_pic={greendale}
                         username={'@' + userInfo.username}
                         hobby={hobbies[index]}
