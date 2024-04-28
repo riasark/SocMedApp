@@ -61,8 +61,8 @@ function SideBar() {
     fetchUserPosts();
   }, [location.search, userId, hobbyIds, hobbies]);
 
-  console.log(compHobbyIds);
-  console.log(hobbyIds);
+  //console.log(compHobbyIds);
+  //console.log(hobbyIds);
 
   return (
     <div id="application-sidebar" class="hs-overlay [--auto-close:lg]

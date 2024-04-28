@@ -1,6 +1,5 @@
 import express, { json } from "express";
 import mongoose from "mongoose";
-import bodyParser from "body-parser";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import User from "./models/User.js"
@@ -17,7 +16,6 @@ dotenv.config()
 const app = express();
 app.use(json());
 app.use(cors());
-app.use(bodyParser.json())
 
 const port = 3030;
 mongoose.connect(process.env.MONGO_URL).then(() => {
@@ -34,29 +32,26 @@ app.use('/login', loginRoute);
 app.get('/users', async (req, res) => {
     try {
         const users = await User.find();
-        res.status(200).json(users); 
+        res.json(users); 
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.json({ message: error.message });
     }
 });
 
 app.get('/hobbies', async (req, res) => {
     try {
         const hobbies = await Hobby.find();
-        res.status(200).json(hobbies); 
+        res.json(hobbies); 
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.json({ message: error.message});
     }
 });
 
 app.get('/posts', async (req, res) => {
     try {
         const posts = await Post.find();
-        res.status(200).json(posts); 
+        res.json(posts); 
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.json({ message: error.message });
     }
 });
