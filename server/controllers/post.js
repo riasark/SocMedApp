@@ -21,7 +21,6 @@ export const newPost = async (req, res) => {
             content
         })
         await post.save();
-        console.log(await  Post.find({author}))
         res.json({message: "Success"});
     } catch(err){
         res.json({message: err.message})
@@ -118,6 +117,7 @@ export const deletePost = async (req, res) => {
         const { id } = req.body; 
         const post = await Post.findById(id);
         await post.remove();
+        res.json({message: "Post Deleted"});
         
     } catch(err){
         res.json({message: err.message});
