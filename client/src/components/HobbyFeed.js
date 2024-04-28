@@ -181,6 +181,7 @@ function HobbyFeed() {
                             hobby={currHobby}
                             text={post.content}
                             time={post.timestamp}
+                            comments={post.comments}
                         />
                         ))}
                     </div>

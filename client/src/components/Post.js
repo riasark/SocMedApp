@@ -1,10 +1,12 @@
+import Comment from "./Comment";
+
 function Post(props) {
 
     const date = new Date(props.time).toLocaleString();
     // date.toDateString();
 
     return (
-    
+    <div>
         <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800" href="/">
         <div class="p-4 md:p-5 flex flex-wrap">
             <div class="pb-5 w-[80px]">
@@ -43,9 +45,16 @@ function Post(props) {
                 <h1>{date}</h1>
             </div>
         </div>
+       
         </a>
-
-
+        {props.comments.map((comment) => (
+            <div>
+            <Comment comment={comment}/>
+            <br></br>
+            </div>
+        ))}
+        
+        </div>
     )
 }
 
