@@ -1,5 +1,11 @@
 import Post from "./Post"
-import greendale from "../icons/greendale-flag.jpg"
+import art from "../hobbyIcons/art.jpg"
+import gardening from "../hobbyIcons/gardening.jpg"
+import movies from "../hobbyIcons/movies.jpg"
+import music from "../hobbyIcons/music.jpg"
+import rockclimbing from "../hobbyIcons/rockclimbing.jpg"
+import sports from "../hobbyIcons/sports.jpg"
+import stem from "../hobbyIcons/stem.jpg"
 import troy from "../icons/troy.jpg"
 import annie from "../icons/annie.jpg"
 import britta from "../icons/britta.jpg"
@@ -20,12 +26,36 @@ function Feed() {
     const [username, setUsername] = useState([]);
     const [hobbies, setHobbies] = useState([]);
     const [pfps, setPFPS] = useState([]);
+    const getHobbyIcon = (name) => {
+        if (name === "Art"){
+            return art;
+        }
+        else if (name === "Gardening"){
+            return gardening;
+        }
+        else if (name === "Movies"){
+            return movies
+        }
+        else if (name === "Music"){
+            return music
+        }
+        else if (name === "Sports"){
+            return sports
+        }
+        else if (name === "Rock Climbing"){
+            return rockclimbing
+        }
+        else if (name === "Stem"){
+            return stem
+        }
+    }
 
     useEffect(() => {
         const fetchHobbyFeed = async () => {
         const uName = [];
         const h = [];
         const p = [];
+        const hI = [];
         try {
             const queryParams = new URLSearchParams(location.search);
             const userId = queryParams.get('userId');
@@ -42,7 +72,7 @@ function Feed() {
                         for(const hobby of hobbies.data){
                             if(hobby._id === post.hobby){
                                 uName.push(user.username);
-                                h.push(hobby.name);
+                                h.push(hobby.name);;
                             }
                         }
                     }
@@ -101,7 +131,7 @@ function Feed() {
                         <Post
                             key={post._id} 
                             pfp={getPfp(pfps[index])}
-                            hobby_pic={greendale}
+                            hobby_pic={getHobbyIcon(hobbies[index])}
                             username={'@' + username[index]}
                             hobby={hobbies[index]}
                             text={post.content}

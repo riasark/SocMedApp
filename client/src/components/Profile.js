@@ -1,6 +1,13 @@
 import troy from "../icons/troy.jpg";
 import Post from "./Post";
 import greendale from "../icons/greendale-flag.jpg"
+import art from "../hobbyIcons/art.jpg"
+import gardening from "../hobbyIcons/gardening.jpg"
+import movies from "../hobbyIcons/movies.jpg"
+import music from "../hobbyIcons/music.jpg"
+import rockclimbing from "../hobbyIcons/rockclimbing.jpg"
+import sports from "../hobbyIcons/sports.jpg"
+import stem from "../hobbyIcons/stem.jpg"
 import annie from "../icons/annie.jpg"
 import britta from "../icons/britta.jpg"
 import man from "../icons/man.jpg"
@@ -25,6 +32,29 @@ function Profile(props) {
     let [userInfo, setUserInfo] = useState([]);
     let [userHobbies, setUserHobbies] = useState([]);
     let [userPosts, setUserPosts] = useState([]);
+    const getHobbyIcon = (name) => {
+        if (name === "Art"){
+            return art;
+        }
+        else if (name === "Gardening"){
+            return gardening;
+        }
+        else if (name === "Movies"){
+            return movies
+        }
+        else if (name === "Music"){
+            return music
+        }
+        else if (name === "Sports"){
+            return sports
+        }
+        else if (name === "Rock Climbing"){
+            return rockclimbing
+        }
+        else if (name === "Stem"){
+            return stem
+        }
+    }
 
     const [filterHobby, setFilterHobby] = useState('');
 
@@ -128,7 +158,7 @@ function Profile(props) {
                     <Post
                         key={post._id} 
                         pfp={pfp()}
-                        hobby_pic={greendale}
+                        hobby_pic={getHobbyIcon(hobbies[index])}
                         username={'@' + userInfo.username}
                         hobby={hobbies[index]}
                         text={post.content}

@@ -1,5 +1,11 @@
 import Post from "./Post"
-import greendale from "../icons/greendale-flag.jpg"
+import art from "../hobbyIcons/art.jpg"
+import gardening from "../hobbyIcons/gardening.jpg"
+import movies from "../hobbyIcons/movies.jpg"
+import music from "../hobbyIcons/music.jpg"
+import rockclimbing from "../hobbyIcons/rockclimbing.jpg"
+import sports from "../hobbyIcons/sports.jpg"
+import stem from "../hobbyIcons/stem.jpg"
 import troy from "../icons/troy.jpg"
 import annie from "../icons/annie.jpg"
 import britta from "../icons/britta.jpg"
@@ -25,6 +31,29 @@ function HobbyFeed() {
     const [uh, setUHs] = useState([]);
     const [currHobby, setCurrHobby] = useState('');
     const [pfps, setPFPS] = useState([]);
+    const getHobbyIcon = (name) => {
+        if (name === "Art"){
+            return art;
+        }
+        else if (name === "Gardening"){
+            return gardening;
+        }
+        else if (name === "Movies"){
+            return movies
+        }
+        else if (name === "Music"){
+            return music
+        }
+        else if (name === "Sports"){
+            return sports
+        }
+        else if (name === "Rock Climbing"){
+            return rockclimbing
+        }
+        else if (name === "Stem"){
+            return stem
+        }
+    }
 
     useEffect(() => {
         const fetchHobbyFeed = async () => {
@@ -130,7 +159,7 @@ function HobbyFeed() {
                 <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
                     <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
                         <div class="flex flex-wrap">
-                            <img class=" mx-4 inline-block size-[62px] rounded-full" src={greendale} alt="Image Description"></img>
+                            <img class=" mx-4 inline-block size-[62px] rounded-full" src={getHobbyIcon(currHobby)} alt="Description"></img>
                             <h2 class="mt-2 text-4xl font-extrabold dark:text-white">{currHobby}</h2>
                             <div class="ml-5 mt-3.5">
                                 <button onClick={joinHobby}  class="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
@@ -147,7 +176,7 @@ function HobbyFeed() {
                         <Post
                             key={post._id} 
                             pfp={getPfp(pfps[index])}
-                            hobby_pic={greendale}
+                            hobby_pic={getHobbyIcon(currHobby)}
                             username={'@' + username[index]}
                             hobby={currHobby}
                             text={post.content}
