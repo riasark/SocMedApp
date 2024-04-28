@@ -116,9 +116,13 @@ function HobbyFeed() {
   
     const isAlreadyJoined  = () => {
         if (uh.includes(currHobby)) {
-            return "Already Joined";
+            return ["Leave Hobby", <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                    </svg>];
         } else {
-            return "Join Hobby";
+            return ["Join Hobby", <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>];
         }
         
   }
@@ -163,10 +167,8 @@ function HobbyFeed() {
                             <h2 class="mt-2 text-4xl font-extrabold dark:text-white">{currHobby}</h2>
                             <div class="ml-5 mt-3.5">
                                 <button onClick={joinHobby}  class="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                    </svg>
-                                    { isAlreadyJoined() }
+                                    { isAlreadyJoined()[1] }
+                                    { isAlreadyJoined()[0] }
                                 </button>
                             </div>
                         </div>
