@@ -9,8 +9,30 @@ function WriteComment(props) {
     const submitComment = async (e) => {
         e.preventDefault();
         let pid = props.pid;
-        console.log(pid);
-    }
+        let data = JSON.stringify({
+            "id": pid,
+            "content": comment
+          });
+          
+          let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:3030/posts/comment',
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            data : data
+          };
+          
+          axios.request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        setComment('');
+    } 
 
     return (
         <div class="relative rounded-bl-lg border-b border-l mx-4 flex flex-wrap">
