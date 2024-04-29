@@ -63,24 +63,25 @@ function Feed() {
             const users = await axios.get(`http://localhost:3030/users`);
 
             if(Array.isArray(response.data)){
-            setPosts(response.data);
-            for(const post of posts){
-                for(const user of users.data){
-                    if (user._id === post.author){
-                        p.push(user.pfp);
-                        const hobbies = await axios.get(`http://localhost:3030/hobbies`)
-                        for(const hobby of hobbies.data){
-                            if(hobby._id === post.hobby){
-                                uName.push(user.username);
-                                h.push(hobby.name);;
+                response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                setPosts(response.data);
+                for(const post of posts){
+                    for(const user of users.data){
+                        if (user._id === post.author){
+                            p.push(user.pfp);
+                            const hobbies = await axios.get(`http://localhost:3030/hobbies`)
+                            for(const hobby of hobbies.data){
+                                if(hobby._id === post.hobby){
+                                    uName.push(user.username);
+                                    h.push(hobby.name);;
+                                }
                             }
                         }
                     }
                 }
-            }
-            setPFPS(p);
-            setUsername(uName);
-            setHobbies(h);
+                setPFPS(p);
+                setUsername(uName);
+                setHobbies(h);
             }  
             else{
             console.log(response.data)
