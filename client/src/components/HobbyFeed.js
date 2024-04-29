@@ -92,7 +92,7 @@ function HobbyFeed() {
 
     const joinHobby = async () => {
     try {
-        if(isAlreadyJoined() === "Join Hobby"){
+        if(isAlreadyJoined()[0] === "Join Hobby"){
             //send hobbyId and userId to backend, a route that adds the user to the hobby
             const isSuccess = await axios.post(`http://localhost:3030/hobbies/${userId}/${hobbyId}`);
             console.log(isSuccess);

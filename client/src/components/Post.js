@@ -43,7 +43,7 @@ function Post(props) {
 
     return (
     <div>
-        <div class="group flex flex-col bg-white border rounded-xl transition dark:bg-neutral-900 dark:border-neutral-800">
+        <div class="group flex flex-col bg-white border rounded-xl transition dark:bg-neutral-900 dark:border-neutral-800" href="/">
         <div class="p-4 md:p-5 flex flex-wrap">
             <div class="pb-5 w-[80px]">
                 <div class="relative inline-block">

@@ -48,7 +48,11 @@ function SideBar() {
         if (Array.isArray(response.data)) {
           setUserPosts(response.data);
 
-          userPosts.forEach((post) => Date.parse(getMostRecentSunday()) > Date.parse(post.timestamp) ? setCompHobbyIds(old => old.includes(post.hobby) ? old : [...old, post.hobby] ) : '');
+          userPosts.forEach((post) => {
+            let last_sun = getMostRecentSunday();
+            let post_date = new Date(post.timestamp);
+            last_sun < post_date ? setCompHobbyIds(old => old.includes(post.hobby) ? old : [...old, post.hobby]) : setCompHobbyIds(old => old);
+          });
         }
       } catch (error) {
         console.log("Error retrieving user posts: ", error);
