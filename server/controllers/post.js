@@ -102,8 +102,7 @@ export const like = async (req, res) => {
 
 export const comment = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { content } = req.body;
+        const { id, content } = req.body;
         const post = await Post.findById(id);
         post.comments.push(content);
         await post.save();
