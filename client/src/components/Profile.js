@@ -163,6 +163,8 @@ function Profile(props) {
                         hobby={hobbies[index]}
                         text={post.content}
                         time={post.timestamp}
+                        comments={post.comments}
+                        id={post._id}
                     />
                 ))}
                 {/* <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">

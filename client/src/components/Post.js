@@ -1,6 +1,9 @@
+import Comment from "./Comment";
+import WriteComment from "./WriteComment";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+
 
 function Post(props) {
 
@@ -25,8 +28,8 @@ function Post(props) {
     // date.toDateString();
 
     return (
-    
-        <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800" href="/">
+    <div>
+        <a class="group flex flex-col bg-white border rounded-xl transition dark:bg-neutral-900 dark:border-neutral-800" href="/">
         <div class="p-4 md:p-5 flex flex-wrap">
             <div class="pb-5 w-[80px]">
                 <div class="relative inline-block">
@@ -79,9 +82,16 @@ function Post(props) {
             )}
             </div>
         </div>
+       
         </a>
-
-
+        {props.comments.map((comment) => (
+            <div>
+            <Comment comment={comment}/>
+            <br></br>
+            </div>
+        ))}
+        <WriteComment pid={props.id}/>
+        </div>
     )
 }
 

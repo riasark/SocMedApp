@@ -40,12 +40,12 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-font-smoothing: antialiased;
 }
 
-/* p, span, ul, li {
-    color: #686a6a;
-    font-weight: 100;
+p, span, ul, li {
+    color: #000000;
+    font-weight: 200;
     -webkit-font-smoothing: subpixel-antialiased;
     font-size: 1rem;
-} */
+}
 
 /* Calendar Container */
 /* ----------------------------- */

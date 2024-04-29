@@ -136,6 +136,8 @@ function Feed() {
                             hobby={hobbies[index]}
                             text={post.content}
                             time={post.timestamp}
+                            comments={post.comments}
+                            id={post._id}
                         />
                         ))}
                     </div>
