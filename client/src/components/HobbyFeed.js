@@ -64,20 +64,21 @@ function HobbyFeed() {
             const users = await axios.get(`http://localhost:3030/users`);
             const currHob = await axios.get(`http://localhost:3030/hobbies/${hobbyId}/info`);
             if(Array.isArray(response.data)){
-            setPosts(response.data);
-            setCurrHobby(currHob.data);
-            for(const post of posts){
-                for(const user of users.data){
-                    if (user._id === post.author){
-                        uName.push(user.username);
-                        pics.push(user.pfp);
+                response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                setPosts(response.data);
+                setCurrHobby(currHob.data);
+                for(const post of posts){
+                    for(const user of users.data){
+                        if (user._id === post.author){
+                            uName.push(user.username);
+                            pics.push(user.pfp);
+                        }
                     }
                 }
-            }
-            const userHobbies = await axios.get(`http://localhost:3030/users/${userId}`);
-            setUHs(userHobbies.data);
-            setUsername(uName);
-            setPFPS(pics);
+                const userHobbies = await axios.get(`http://localhost:3030/users/${userId}`);
+                setUHs(userHobbies.data);
+                setUsername(uName);
+                setPFPS(pics);
             }  
             else{
             console.log(response.data)
