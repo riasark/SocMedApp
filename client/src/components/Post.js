@@ -17,7 +17,7 @@ function Post(props) {
         const findCurrUser = async () => {
             const info = await axios.get(`http://localhost:3030/users/${userId}/specific`);
             setAccountUser("@" + info.data.username);
-            console.log(account, props.username)
+            // console.log(account, props.username)
         }
         findCurrUser();
     })
@@ -29,7 +29,7 @@ function Post(props) {
 
     return (
     <div>
-        <a class="group flex flex-col bg-white border rounded-xl transition dark:bg-neutral-900 dark:border-neutral-800" href="/">
+        <div class="group flex flex-col bg-white border rounded-xl transition dark:bg-neutral-900 dark:border-neutral-800" href="/">
         <div class="p-4 md:p-5 flex flex-wrap">
             <div class="pb-5 w-[80px]">
                 <div class="relative inline-block">
@@ -83,7 +83,7 @@ function Post(props) {
             </div>
         </div>
        
-        </a>
+        </div>
         {props.comments.map((comment) => (
             <div>
             <Comment comment={comment}/>
