@@ -37,8 +37,10 @@ function Post(props) {
         setIsModalOpen(false);
     };
 
-    const deletePost = () => {
+    const deletePost = async () => {
         // delete post logic send to backend
+        const response = await axios.delete(`http://localhost:3030/posts/delete`, { data: { id: props.id }});
+        console.log(response.data);
     }
 
     return (

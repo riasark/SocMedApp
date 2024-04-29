@@ -115,7 +115,7 @@ export const deletePost = async (req, res) => {
     try {
         const { id } = req.body; 
         const post = await Post.findById(id);
-        await post.remove();
+        await post.deleteOne({_id: id});
         res.json({message: "Post Deleted"});
         
     } catch(err){
