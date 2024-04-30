@@ -2,13 +2,13 @@ import Comment from "./Comment";
 import WriteComment from "./WriteComment";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 function Post(props) {
 
     const [account, setAccountUser] = useState('');
-
+    const nav = useNavigate();
     const location = useLocation();
     
     const param = new URLSearchParams(location.search);
@@ -40,6 +40,7 @@ function Post(props) {
     const deletePost = async () => {
         // delete post logic send to backend
         const response = await axios.delete(`http://localhost:3030/posts/delete`, { data: { id: props.id }});
+        nav(`/profile?userId=${userId}`);
         console.log(response.data);
     }
 
