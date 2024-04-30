@@ -13,37 +13,50 @@ function CalendarComponent() {
     const userId = queryParams.get('userId');
 
     function generateCalendar(year, month) {
-        const calendar = [];
-        const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get the total number of days in the month
-        const firstDayOfMonth = new Date(year, month, 1).getDay(); // Get the day of the week for the first day of the month (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-        
-        // let currentDate = 1; // Start with the first day of the month
-        const startingDate = new Date(year, month, 1 - firstDayOfMonth);
+        // let dayone = new Date(year, month, 1).getDay();
+        let firstDayOfMonth = new Date(year + "-" + month + "-01").getDay();
 
-        
-        // Generate each week
+        // Get the last date of the month
+        let lastDate = new Date(year, month, 0).getDate();
+
+        // Get the day of the last date of the month
+        let dayEnd = new Date(year, month, lastDate).getDay();
+
+        // Get the last date of the previous month
+        let monthLastDate = new Date(year, month, 0).getDate();
+
+        let arr = [];
+
+        for (let i = firstDayOfMonth; i > 0; i--) {
+            // if (reached_first_sun) {
+            arr.push({ day: monthLastDate - i + 1, active: false });
+        }
+
+        for (let i = 1; i <= lastDate; i++) {
+            // Check if the current date is today
+            arr.push({ day: i, active: true });
+        }
+
+        for (let i = dayEnd; i < 6; i++) {
+            arr.push({ day: i - dayEnd + 1, active: false });
+        }
+
+        let calendar = [];
+
+        let i = 0;
+
         for (let week = 0; week < 5; week++) {
-            const weekObj = {};
-    
-            // Generate each day in the week
+            let weekObj = {};
+
             for (let day = 0; day < 7; day++) {
-                const currentDate = startingDate.getDate();
-                const currentMonth = startingDate.getMonth();
-    
-                if (currentMonth !== month) {
-                    // Day belongs to the previous or next month
-                    weekObj[`day${day + 1}`] = { active: false, day: currentDate };
-                } else {
-                    // Day belongs to the current month
-                    weekObj[`day${day + 1}`] = { active: true, day: currentDate };
-                }
-    
-                startingDate.setDate(currentDate + 1); // Move to the next day
+            if (arr[i] === undefined) {
+                arr[i] = {day: (arr[i - 1].day + 1), active: false};
             }
-    
+            weekObj[`day${day + 1}`] = arr[i];
+            i++;
+            }
             calendar.push(weekObj);
         }
-    
         return calendar;
     }
 
@@ -153,13 +166,13 @@ function CalendarComponent() {
 
                     <section class="calendar__days">
                     <section class="calendar__top-bar">
+                        <span class="top-bar__days">Sun</span>
                         <span class="top-bar__days">Mon</span>
                         <span class="top-bar__days">Tue</span>
                         <span class="top-bar__days">Wed</span>
                         <span class="top-bar__days">Thu</span>
                         <span class="top-bar__days">Fri</span>
                         <span class="top-bar__days">Sat</span>
-                        <span class="top-bar__days">Sun</span>
                     </section>
 
                     {cal.map((week) => (
