@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 function Post(props) {
 
     const [account, setAccountUser] = useState('');
-
+   // const nav = useNavigate();
     const location = useLocation();
     
     const param = new URLSearchParams(location.search);
@@ -37,8 +37,12 @@ function Post(props) {
         setIsModalOpen(false);
     };
 
-    const deletePost = () => {
+    const deletePost = async () => {
         // delete post logic send to backend
+        await axios.delete(`http://localhost:3030/posts/delete`, { data: { id: props.id }});
+        window.location.reload();
+        closeModal();
+
     }
 
     return (
