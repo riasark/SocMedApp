@@ -12,7 +12,22 @@ function CreateProfilePage() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const pfps = ['annie', 'boat', 'britta', 'camera', 'coolgirl', 'coolguy', 'man', 'troy', 'woman'];
-    const hobbies = ["Art", "Gardening", "Stem", "Rock Climbing", "Music", "Movies", "Sports"];
+    const hobbies = [
+        "Art", 
+        "Gardening", 
+        "Stem", 
+        "Rock Climbing", 
+        "Music", 
+        "Movies", 
+        "Sports", 
+        "Astronomy",
+        "Birdwatching",
+        "Cooking",
+        "Fishing",
+        "Mindfulness",
+        "Photography",
+        "Traveling"
+    ];
     const hid = [
         '6621c71b006491c6a2a20d58',
         '6621c642006491c6a2a20d57',
@@ -20,7 +35,14 @@ function CreateProfilePage() {
         '6622837c032c79bd9eb4fdf1',
         '6621c750006491c6a2a20d59',
         '6621c7b2006491c6a2a20d5c',
-        '6621c795006491c6a2a20d5b'
+        '6621c795006491c6a2a20d5b',
+        '6631c0186d298a3e4716fa67',
+        '6631bfbb6d298a3e4716fa66',
+        '6631be8a6d298a3e4716fa60',
+        '6631c03c6d298a3e4716fa69',
+        '6631bef06d298a3e4716fa64',
+        '6631beba6d298a3e4716fa62',
+        '6631bf9c6d298a3e4716fa65'
     ];
 
     const submitUser = async (e) => {
