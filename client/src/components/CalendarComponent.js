@@ -71,7 +71,14 @@ function CalendarComponent() {
         '6621c777006491c6a2a20d5a': ["Stem", "bg-red-700"],
         '6621c795006491c6a2a20d5b': ["Sports", "bg-blue-800"],
         '6621c7b2006491c6a2a20d5c': ["Movies", "bg-rose-400"],
-        '6622837c032c79bd9eb4fdf1': ["Rock Climbing", "bg-indigo-300"] 
+        '6622837c032c79bd9eb4fdf1': ["Rock Climbing", "bg-indigo-300"], 
+        '6631be8a6d298a3e4716fa60': ["Cooking", "bg-teal-200"],
+        '6631beba6d298a3e4716fa62': ["Photography", "bbg-yellow-200"],
+        '6631bef06d298a3e4716fa64': ["Mindfulness", "bg-orange-200"],
+        '6631bf9c6d298a3e4716fa65': ["Traveling", "bg-pink-200"],
+        '6631bfbb6d298a3e4716fa66': ["Birdwatching", "bg-cyan-200"],
+        '6631c0186d298a3e4716fa67': ["Astronomy", "bg-lavender-200"],
+        '6631c03c6d298a3e4716fa69': ["Fishing", "bg-peach-200"]
     }
 
     useEffect(() => {
