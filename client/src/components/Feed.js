@@ -152,10 +152,10 @@ function Feed() {
 }
 
     return (
-        <div class="w-full lg:ps-64">
-             <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
-                    <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
+        <div className="w-full lg:ps-64">
+             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                <div className="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
+                    <div className="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
                     {posts.map((post, index) => (
                         <Post
                             key={post._id} 

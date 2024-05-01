@@ -69,7 +69,7 @@ function SideBar() {
   //console.log(hobbyIds);
 
   return (
-    <div id="application-sidebar" class="hs-overlay [--auto-close:lg]
+    <div id="application-sidebar" className="hs-overlay [--auto-close:lg]
       hs-overlay-open:translate-x-0
       -translate-x-full transition-all duration-300 transform
       w-[260px]
@@ -79,14 +79,14 @@ function SideBar() {
       lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
       dark:bg-neutral-800 dark:border-neutral-700
     ">
-  <div class="px-8 pt-4">
-    <h1 class="text-4xl font-extrabold dark:text-white">Your Hobbies</h1>
+  <div className="px-8 pt-4">
+    <h1 className="text-4xl font-extrabold dark:text-white">Your Hobbies</h1>
   </div>
 
-  <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+  <nav className="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
     <ul className="space-y-1.5">
       {hobbies.map((hobby, index) => (
-        <li>
+        <li key={index}>
           <a
             className={`flex items-center gap-x-3.5 py-2 px-2.5 ${compHobbyIds.includes(hobbyIds[index]) ? 'bg-lime-100 hover:bg-lime-200' : 'bg-pink-100 hover:bg-pink-200' } text-sm text-gray-700 rounded-lg dark:bg-neutral-700 dark:text-white`}
             href={`http://localhost:3000/hobby?userId=${userId}&hobbyId=${hobbyIds[index]}`}

@@ -145,12 +145,12 @@ function HobbyFeed() {
   
     const isAlreadyJoined  = () => {
         if (uh.includes(currHobby)) {
-            return ["Leave Hobby", <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+            return ["Leave Hobby", <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
                                     </svg>];
         } else {
-            return ["Join Hobby", <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            return ["Join Hobby", <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>];
         }
         
@@ -187,15 +187,15 @@ function HobbyFeed() {
 }
 
     return (
-        <div class="w-full lg:ps-64">
-             <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                <div class="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
-                    <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
-                        <div class="flex flex-wrap">
-                            <img class=" mx-4 inline-block size-[62px] rounded-full" src={getHobbyIcon(currHobby)} alt="Description"></img>
-                            <h2 class="mt-2 text-4xl font-extrabold dark:text-white">{currHobby}</h2>
-                            <div class="ml-5 mt-3.5">
-                                <button onClick={joinHobby}  class="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
+        <div className="w-full lg:ps-64">
+             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                <div className="max-w-[85rem] p-4 sm:px-6 lg:px-8 mx-auto">
+                    <div className="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
+                        <div className="flex flex-wrap">
+                            <img className=" mx-4 inline-block size-[62px] rounded-full" src={getHobbyIcon(currHobby)} alt="Description"></img>
+                            <h2 className="mt-2 text-4xl font-extrabold dark:text-white">{currHobby}</h2>
+                            <div className="ml-5 mt-3.5">
+                                <button onClick={joinHobby}  className="h-[35px] y-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer" data-hs-overlay="#hs-notifications">
                                     { isAlreadyJoined()[1] }
                                     { isAlreadyJoined()[0] }
                                 </button>

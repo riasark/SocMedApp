@@ -166,15 +166,15 @@ function Profile(props) {
         }
     }
     return (
-        <div class="w-full lg:ps-64">
-             <div class="p-4 sm:p-6 space-y-4 sm:space-y-6 content-center">
-                <div class="text-center">
-                    <img class="inline-block size-[150px] rounded-full" src={pfp()} alt="" />
-                    <h1 class="text-4xl font-extrabold dark:text-white">@{userInfo.username}</h1>
-                    <h4 class="text-2xl font-bold dark:text-white">{userInfo.fname} {userInfo.lname}</h4>
+        <div className="w-full lg:ps-64">
+             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 content-center">
+                <div className="text-center">
+                    <img className="inline-block size-[150px] rounded-full" src={pfp()} alt="User Profile" />
+                    <h1 className="text-4xl font-extrabold dark:text-white">@{userInfo.username}</h1>
+                    <h4 className="text-2xl font-bold dark:text-white">{userInfo.fname} {userInfo.lname}</h4>
                     <div className="flex flex-wrap mx-[250px] mt-5">
-                        {userHobbies.map((hobby) => (
-                            <div className={`p-2`} style={{ width: `${100 / userHobbies.length}%` }}>
+                        {userHobbies.map((hobby, index) => (
+                            <div key={index} className={`p-2`} style={{ width: `${100 / userHobbies.length}%` }}>
                                 <button onClick={() => filterBy(hobby)} className={"w-full rounded-full hover:bg-sky-200 " + (filterHobby === hobby ? 'bg-sky-200' : 'bg-sky-100')}>
                                     • {hobby}
                                 </button>

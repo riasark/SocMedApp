@@ -17,11 +17,11 @@ function CalendarDay(props) {
     
     }, [props.pd, props.d.day]);
     return (
-        <div class={`${props.d.active ? '' : 'inactive'} ${today && props.d.active ? 'calendar__day today' : 'calendar__day'}`}>
-            <span class="calendar__date">{props.d.day}</span>
-            <span class={`${today && props.d.active ? 'calendar__task calendar__task--today' : 'calendar__task'}`}>  
-            {colors.map((color) => (
-                <span class={`${props.d.active ? '' : 'opacity-50'} ${props.d.active ? color : ''} end-0 block size-3.5 rounded-full ring-2 ring-white dark:ring-neutral-900`}></span>           
+        <div className={`${props.d.active ? '' : 'inactive'} ${today && props.d.active ? 'calendar__day today' : 'calendar__day'}`}>
+            <span className="calendar__date">{props.d.day}</span>
+            <span className={`${today && props.d.active ? 'calendar__task calendar__task--today' : 'calendar__task'}`}>  
+            {colors.map((color, index) => (
+                <span key={index} className={`${props.d.active ? '' : 'opacity-50'} ${props.d.active ? color : ''} end-0 block size-3.5 rounded-full ring-2 ring-white dark:ring-neutral-900`}></span>           
             ))}
             </span>
         </div>
