@@ -16,6 +16,13 @@ import boat from "../icons/boat.jpg"
 import camera from "../icons/camera.jpg"
 import coolgirl from "../icons/coolgirl.jpg"
 import coolguy from "../icons/coolguy.jpg"
+import astronomy from "../hobbyIcons/astronomy.jpg"
+import birdwatching from "../hobbyIcons/birdwatching.jpg"
+import cooking from "../hobbyIcons/cooking.jpg"
+import fishing from "../hobbyIcons/fishing.jpg"
+import mindfulness from "../hobbyIcons/mindfulness.jpg"
+import photography from "../hobbyIcons/photography.jpg"
+import traveling from "../hobbyIcons/traveling.jpg"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -53,6 +60,27 @@ function Profile(props) {
         }
         else if (name === "Stem"){
             return stem
+        }
+        else if (name === "Astronomy"){
+            return astronomy
+        }
+        else if (name === "Birdwatching"){
+            return birdwatching
+        }
+        else if (name === "Cooking"){
+            return cooking
+        }
+        else if (name === "Fishing"){
+            return fishing
+        }
+        else if (name === "Mindfulness"){
+            return mindfulness
+        }
+        else if (name === "Photography"){
+            return photography
+        }
+        else if (name === "Traveling"){
+            return traveling
         }
     }
 
