@@ -90,9 +90,20 @@ export const userFeed = async (req, res) => {
 export const like = async (req, res) => {
     try {
         const { id } = req.params;
-        const { author } = req.body
         const post = await Post.findById(id);
         post.likes += 1;
+        await post.save();
+        res.json(post);
+    }catch(err){
+        res.json({message: err.message})
+    }
+}
+
+export const unlike = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const post = await Post.findById(id);
+        post.likes -= 1;
         await post.save();
         res.json(post);
     }catch(err){
