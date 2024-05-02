@@ -7,10 +7,7 @@ import { useLocation } from "react-router-dom";
 
 function Post(props) {
     // console.log(props.id);
-    const [liked, like] = useState(() => {
-      // Get value from local storage or default to false if not present
-      return localStorage.getItem(`post-${props.id}-liked`) === 'true';
-    });
+  
     // console.log(liked);
     // console.log(localStorage.getItem(`post-${props.key}-liked`) || false);
     // like(localStorage.getItem(`post-${props.key}-liked`) || false);
@@ -18,15 +15,27 @@ function Post(props) {
 
     const [account, setAccountUser] = useState('');
    // const nav = useNavigate();
+   let [toggled, setToggled] = useState(false);
     const location = useLocation();
 
+    const [liked, like] = useState(() => {
+      // Get value from local storage or default to false if not present
+      return localStorage.getItem(`post-${props.id}-liked`) === 'true';
+    });
 
     const toggleLike = () => {
-      like(!liked);
+      like(prevLiked => !prevLiked);
+      setToggled(true);
     }
 
     useEffect(() => {
+      // let prev = localStorage.getItem(`post-${props.id}-liked`);
       localStorage.setItem(`post-${props.id}-liked`, liked);
+      let l_or_u = liked ? 'like' : "unlike";
+      const sendLikeOrUnlike = async () => {
+        const response = await axios.get(`http://localhost:3030/posts/${props.id}/${l_or_u}`);
+      }
+      if (toggled) { sendLikeOrUnlike() };
       // this is actually where we send to backend
     }, [liked]);
     
