@@ -158,7 +158,7 @@ function Feed() {
                     <div class="grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-3 sm:gap-6">
                     {posts.map((post, index) => (
                         <Post
-                            key={post._id} 
+                            key={index} 
                             pfp={getPfp(pfps[index])}
                             hobby_pic={getHobbyIcon(hobbies[index])}
                             username={'@' + username[index]}

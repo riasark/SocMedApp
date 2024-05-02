@@ -6,17 +6,29 @@ import { useLocation } from "react-router-dom";
 
 
 function Post(props) {
+    // console.log(props.id);
+    const [liked, like] = useState(() => {
+      // Get value from local storage or default to false if not present
+      return localStorage.getItem(`post-${props.id}-liked`) === 'true';
+    });
+    // console.log(liked);
+    // console.log(localStorage.getItem(`post-${props.key}-liked`) || false);
+    // like(localStorage.getItem(`post-${props.key}-liked`) || false);
+    // console.log(liked);
 
     const [account, setAccountUser] = useState('');
    // const nav = useNavigate();
     const location = useLocation();
 
-    const [liked, like] = useState(false);
 
     const toggleLike = () => {
       like(!liked);
-      // logic to send to backend
     }
+
+    useEffect(() => {
+      localStorage.setItem(`post-${props.id}-liked`, liked);
+      // this is actually where we send to backend
+    }, [liked]);
     
     const param = new URLSearchParams(location.search);
     const userId = param.get('userId');
