@@ -13,52 +13,51 @@ function CalendarComponent() {
     const userId = queryParams.get('userId');
 
     function generateCalendar(year, month) {
-        // let dayone = new Date(year, month, 1).getDay();
-        let firstDayOfMonth = new Date(year + "-" + month + "-01").getDay();
-
+        let firstDayOfMonth = new Date(year, month - 1, 1).getDay();
+    
         // Get the last date of the month
         let lastDate = new Date(year, month, 0).getDate();
-
+    
         // Get the day of the last date of the month
-        let dayEnd = new Date(year, month, lastDate).getDay();
-
+        let dayEnd = new Date(year, month - 1, lastDate).getDay();
+    
         // Get the last date of the previous month
-        let monthLastDate = new Date(year, month, 0).getDate();
-
+        let monthLastDate = new Date(year, month - 1, 0).getDate();
+    
         let arr = [];
-
+    
         for (let i = firstDayOfMonth; i > 0; i--) {
-            // if (reached_first_sun) {
             arr.push({ day: monthLastDate - i + 1, active: false });
         }
-
+    
         for (let i = 1; i <= lastDate; i++) {
-            // Check if the current date is today
             arr.push({ day: i, active: true });
         }
-
+    
         for (let i = dayEnd; i < 6; i++) {
             arr.push({ day: i - dayEnd + 1, active: false });
         }
-
+    
         let calendar = [];
-
+    
         let i = 0;
-
+    
         for (let week = 0; week < 5; week++) {
             let weekObj = {};
-
+    
             for (let day = 0; day < 7; day++) {
-            if (arr[i] === undefined) {
-                arr[i] = {day: (arr[i - 1].day + 1), active: false};
-            }
-            weekObj[`day${day + 1}`] = arr[i];
-            i++;
+                if (arr[i] === undefined) {
+                    arr[i] = {day: (arr[i - 1].day + 1), active: false};
+                }
+                weekObj[`day${day + 1}`] = arr[i];
+                i++;
             }
             calendar.push(weekObj);
         }
+        console.log(calendar);
         return calendar;
     }
+    
 
     const options = { weekday: 'long', month: 'long', day: 'numeric'};
     const general = {month: "numeric", year: "numeric"}
@@ -71,7 +70,6 @@ function CalendarComponent() {
     const month = today.split(" ")[1];
 
     const [cal, setCal] = useState(generateCalendar(parseInt(current[1]), parseInt(current[0])));
-    
     const [postDays, setPostDays] = useState({});
 
     const [hids, setHids] = useState([]);
