@@ -71,10 +71,10 @@ function CreateProfilePage() {
                 </div>
             </div>
 
-            <div className="mt-5 max-w-lg mx-auto bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
+            <div className="mt-5 max-w-lg mx-auto bg-pink-300 border-pink-300 rounded-xl shadow-sm dark:bg-pink-300 dark:border-pink-300">
                 {/* <!-- Card --> */}
                 <div className="flex flex-col border rounded-xl p-4 sm:p-4 lg:p-8 dark:border-neutral-700">
-                    <h2 className="mb-8 text-xl text-center font-semibold text-gray-800 dark:text-neutral-600">
+                    <h2 className="mb-8 text-xl text-center font-semibold text-pink-600 dark:text-neutral-600">
                         Fill With Your Credentials
                     </h2>
 
@@ -83,12 +83,12 @@ function CreateProfilePage() {
                             {/* <!-- Grid --> */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                 <div>
-                                    <label className="block text-sm mb-2 dark:text-white">First Name</label>
+                                    <label className="block text-sm mb-2 text-white">First Name</label>
                                     <input type="text" onChange={(e) => setFirstName(e.target.value)} name="hs-firstname-contacts-1" id="hs-firstname-contacts-1" className="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral dark:border-neutral-700 dark:text-neutral-800 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm dark:text-white">Last Name</label>
+                                    <label className="block mb-2 text-sm text-white">Last Name</label>
                                     <input type="text" onChange={(e) => setLastName(e.target.value)} name="hs-lastname-contacts-1" id="hs-lastname-contacts-1" className="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral dark:border-neutral-700 dark:text-neutral-800 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
                                 </div>
                             </div>
@@ -97,19 +97,19 @@ function CreateProfilePage() {
                             {/* <!-- Grid --> */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                                 <div>
-                                    <label className="block mb-2 text-sm font dark:text-white">Username</label>
+                                    <label className="block mb-2 text-sm font text-white">Username</label>
                                     <input type="text" onChange={(e) => setUserName(e.target.value)} name="hs-email-contacts-1" id="hs-email-contacts-1" className="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral dark:border-neutral-700 dark:text-neutral-800 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm font dark:text-white">Password</label>
+                                    <label className="block mb-2 text-sm font text-white">Password</label>
                                     <input type="text" onChange={(e) => setPassword(e.target.value)} name="hs-phone-number-1" id="hs-phone-number-1" className="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral dark:border-neutral-700 dark:text-neutral-800 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
                                 </div>
                             </div>
                             {/* <!-- End Grid --> */}
 
                             <div>
-                                <label className="block mb-2 text-sm font dark:text-white">Select a hobby</label>
+                                <label className="block mb-2 text-sm font text-white">Select a hobby</label>
                                 <select onChange={(e) => setChosen(e.target.value)} id="communities" className="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option>Choose a hobby to start!</option>
                                     {hobbies.map((hobby, index) => {
@@ -118,7 +118,7 @@ function CreateProfilePage() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block mb-2 text-sm font dark:text-white">Select a profile picture</label>
+                                <label className="block mb-2 text-sm font text-white">Select a profile picture</label>
                                 <select onChange={(e) => setProfilePic(e.target.value)} id="profile-pic" className="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option>Choose a profile picture</option>
                                     {pfps.map((pfp, index) => {
@@ -130,7 +130,7 @@ function CreateProfilePage() {
                         {/* <!-- End Grid --> */}
 
                         <div className="mt-6 grid">
-                            <button onClick={submitUser} type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Submit Profile</button>
+                            <button onClick={submitUser} type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font rounded-lg border border-transparent bg-pink-600 text-white hover:bg-pink-700 disabled:opacity-50 disabled:pointer-events-none">Submit Profile</button>
                         </div>
                     </form>
 
