@@ -214,6 +214,7 @@ function HobbyFeed() {
                             time={post.timestamp}
                             comments={post.comments}
                             id={post._id}
+                            likes={post.likes}
                         />
                         ))}
                     </div>

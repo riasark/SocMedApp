@@ -1,5 +1,5 @@
 import express from "express";
-import { comment, deletePost, newPost, userFeed, userHobbyFeed} from "../controllers/post.js"
+import { comment, deletePost, like, newPost, unlike, userFeed, userHobbyFeed} from "../controllers/post.js"
 
 const router = express.Router();
 
@@ -13,5 +13,7 @@ router.post("/:author/newpost", newPost);
 router.delete("/delete", deletePost);
 
 router.post("/comment", comment);
+router.get("/:id/like", like);
+router.get("/:id/unlike", unlike);
 
 export default router;
