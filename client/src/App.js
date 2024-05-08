@@ -11,6 +11,7 @@ import HobbyPage from './pages/HobbyPage.js';
 import ProfilePage from './pages/ProfilePage.js';
 import Calendar from './pages/Calendar.js';
 import CreateProfilePage from './pages/CreateProfilePage.js';
+import LandingPage from './pages/LandingPage.js';
 // window.HSStaticMethods = {
 //   // Define the methods or properties of the interface
 //   // For example:
@@ -30,6 +31,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/hobby" element={<HobbyPage />} />
