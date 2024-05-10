@@ -26,7 +26,6 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", sans-serif;
-    background-image: linear-gradient(45deg, var(--tangerine) 0%, var(--pink) 100%);
 }
 
 @media screen and (min-width:55em) {
@@ -63,6 +62,29 @@ p, span, ul, li {
     /* box-shadow: 5px 5px 72px rgba(30, 46, 50, 0.5); */
     color: #040605; /* $black */
 }
+
+@media (prefers-color-scheme: dark) {
+    .calendar-contain {
+        background-color: #121212 !important; /* Dark background color */
+        color: #ffffff !important; /* Light text color */
+    }
+    .title-bar {
+        background-color: #121212 !important;
+    }
+    .burger__lines {
+        background:white !important;
+    }
+    .burger__lines:before,
+    .burger__lines:after {
+        background-color: #ffffff !important;
+    }
+    .title-bar__year {
+        color:white !important;
+    }
+    .title-bar__month {
+        color:white !important;
+    }
+  }
 
 @media screen and (min-width:55em) {
     .calendar-contain {
@@ -278,6 +300,12 @@ p, span, ul, li {
     color: #040605; /* $black */
 }
 
+@media (prefers-color-scheme: dark) {
+    .calendar__sidebar .content {
+        color: white !important;
+    }
+}
+
 .sidebar__nav {
     display: flex;
     align-items: center;
@@ -322,6 +350,17 @@ p, span, ul, li {
     color: transparentize(black, 0.7);
 }
 
+@media (prefers-color-scheme: black) {
+    .sidebar__list-item--complete {
+        color: transparentize(white, 0.7) !important;
+    }
+    
+    .sidebar__list-item--complete .list-item__time {
+        color: transparentize(white, 0.7) !important;
+    }
+    
+}
+
 .sidebar__heading {
     font-size: 2.2rem;
     font-weight: bold;
@@ -356,6 +395,12 @@ p, span, ul, li {
     padding: 0.8rem 0 1rem 1rem;
     background: #f5f7f6; /* $white */
 }
+
+@media (prefers-color-scheme: dark) {
+    .calendar__days {
+        background-color: #121212 !important;
+    }
+  }
 
 @media screen and (min-width:55em) {
     .calendar__days {
@@ -400,6 +445,12 @@ p, span, ul, li {
     line-height: 0.7;
 }
 
+@media (prefers-color-scheme: dark) {
+    .calendar__date {
+        color: white !important;
+    }
+}
+
 @media screen and (min-width:55em) {
     .calendar__date {
         font-size: 2.3rem;
@@ -419,6 +470,12 @@ p, span, ul, li {
     color: #040605; /* $black */
     display: flex;
     font-size: 0.8rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .calendar__task {
+        color: white !important;
+    }
 }
 
 @media screen and (min-width:55em) {
