@@ -18,6 +18,12 @@ Mariana Jaramillo:
 
 
 Luke Waldow:
-
+I made varied contributions, principally implementing testing for the backend, involving creating a test framework 
+using jest, supertest, and mockingoose for testing api calls, and creating unit tests for each api function. This also 
+necessitated backend refactoring, particularly separating the express application from the server to facilitate testing 
+the application, and some bug fixes in the api functions. I also assisted in beginning setup for the express application. 
+I also made contributions to the frontend, through some layout fixes like fixing correct layout of posts made by the current 
+user, and fixed bugs in the site's appearance when the system is set to dark mode. I also made non-technical contributions
+through the group's joint work on homework and exercises, and recorded videos for the presentation feature demos.
 
 Claudia Zhu:
