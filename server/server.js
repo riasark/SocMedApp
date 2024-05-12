@@ -55,3 +55,5 @@ app.get('/posts', async (req, res) => {
         res.json({ message: error.message });
     }
 });
+
+export default app;
