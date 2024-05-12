@@ -91,6 +91,7 @@ export const like = async (req, res) => {
     try {
         const { id } = req.params;
         const post = await Post.findById(id);
+        console.log(post)
         post.likes += 1;
         await post.save();
         res.json(post);
@@ -117,6 +118,7 @@ export const comment = async (req, res) => {
         const post = await Post.findById(id);
         post.comments.push(content);
         await post.save();
+        res.json({})
     } catch (err){
         res.json({message: err.message});
     }
