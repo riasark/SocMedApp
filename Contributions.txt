@@ -12,6 +12,15 @@ contributions that I have made to the project was through working on certain sli
 presentations. 
 
 Shira Ben-Anat:
+My contributions to the project were mainly done on the frontend, I created several of the components and 
+pages for the application. I created the main feed, hobby, and profile pages, as well as the Calendar. 
+I used Preline templates and found an HTML/CSS template for the Calendar which I modified and I implemented 
+the display to be dynamic. I also worked with several other features, such as creating a post, writing and 
+displaying comments, liking posts, filtering posts on the profile page, displaying hobbies in the searchbar 
+dropdown, and coloring hobbies in the sidebar. I worked with backend using axios calls to send and receive 
+information from the server. I also helped out with various bug fixes and some of the slides for our presentations,
+as well as keeping us on track with a google doc where we listed tasks and which allowed us to assign certain tasks to 
+ourselves to maximize productivity.
 
 
 Mariana Jaramillo:
