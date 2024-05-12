@@ -202,3 +202,113 @@ describe('Post Routes', () => {
         });
     });
 });
+
+describe('User Routes', () => {
+    beforeEach(() => {
+        mockingoose.resetAll();
+    });
+
+    describe('GET /users/:user/specific', () => {
+        it('should return user profile', async () => {
+            const userId = '609f34a038d26817dc0f5468'; // Example user ID
+            const username = 'exampleuser';
+
+            const mockUser = { _id: userId, username: username };
+            mockingoose(User).toReturn(mockUser, 'findOne');
+
+            const response = await request(app)
+                .get(`/users/${userId}/specific`)
+                .expect(200);
+
+            expect(response.body).toEqual(expect.objectContaining(mockUser));
+        });
+    });
+
+    describe('GET /users/:user/hobbies', () => {
+        it('should return user hobbies', async () => {
+            const userId = '609f34a038d26817dc0f5468'; // Example user ID
+            const hobbyId = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const hobbyName = 'Example Hobby';
+
+            const mockUser = { _id: userId, hobbies: [hobbyId] };
+            mockingoose(User).toReturn(mockUser, 'findOne');
+            mockingoose(Hobby).toReturn({ _id: hobbyId, name: hobbyName }, 'findOne');
+
+            const response = await request(app)
+                .get(`/users/${userId}`)
+                .expect(200);
+
+            expect(response.body).toEqual([hobbyName]);
+        });
+    });
+
+    describe('POST /login', () => {
+        it('should log in a user', async () => {
+            const username = 'exampleuser';
+            const password = 'password';
+            const userId = '66411b38880650243dbc4acb'
+            const mockUser = { username: username, password: password, _id: userId };
+            mockingoose(User).toReturn(mockUser, 'findOne');
+
+            const response = await request(app)
+                .post('/login')
+                .send({ username: username, password: password })
+                .expect(200);
+
+            expect(response.body).toEqual(expect.objectContaining(mockUser));
+        });
+
+        it('should handle login failure', async () => {
+            const username = 'nonexistentuser';
+            const password = 'password';
+            mockingoose(User).toReturn(null, 'findOne');
+
+            const response = await request(app)
+                .post('/login')
+                .send({ username: username, password: password })
+                .expect(200);
+
+                expect(response.body).toEqual(expect.objectContaining({message: expect.stringContaining('')}))
+        });
+    });
+
+    describe('POST /users/newuser', () => {
+        it('should sign up a new user', async () => {
+            const firstname = 'John';
+            const lastname = 'Doe';
+            const username = 'johndoe';
+            const password = 'password';
+            const chosen = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const profilepic = 'profilepic.jpg';
+
+            const newUser = {
+                fname: firstname,
+                lname: lastname,
+                username: username,
+                password: password,
+                hobbies: [chosen],
+                pfp: profilepic
+            };
+
+            mockingoose(User).toReturn({}, 'save');
+
+            const response = await request(app)
+                .post('/users/newuser')
+                .send({ firstname, lastname, userName: username, password, chosen, profilepic })
+                .expect(200);
+
+            expect(response.body).toEqual(expect.objectContaining(newUser));
+        });
+
+        it('should handle signup failure', async () => {
+            mockingoose(User).toReturn(new Error('Signup failed'), 'save');
+
+            const response = await request(app)
+                .post('/users/newuser')
+                .send({}) // Empty request body to simulate failure
+                .expect(200);
+
+            expect(response.body).toEqual(expect.objectContaining({message: expect.stringContaining('')}))
+        });
+    });
+});
