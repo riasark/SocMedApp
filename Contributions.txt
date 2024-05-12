@@ -1,0 +1,23 @@
+Aparajita Sarkar:
+The contributions that I made to this project were mostly on the backend side. I was in charge of creating 
+implementing the business logic such that all the functionality that was visible to users on the front end
+was correctly being processed in the backend. I was in charge of creating the models in the database, 
+the routes, and the controllers. I also did a few frontend-backend integrations, such as the signup page, 
+once the page was created by the frontend team. I was responsible for taking all the information in that
+integration and formatting it such that users were successfully able to create their accounts and then log in. 
+Any time there was trouble in the frontend where they weren't properly either being able to send or recieve information 
+to and from the backend, I was in charge of going into the backend and taking a look at the implemented functions 
+and making sure that there were no backend bugs since I was the one who created the functions. Other non-technical 
+contributions that I have made to the project was through working on certain slides for the midterm and final 
+presentations. 
+
+Shira Ben-Anat:
+
+
+Mariana Jaramillo:
+
+
+Luke Waldow:
+
+
+Claudia Zhu:
