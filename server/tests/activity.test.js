@@ -14,7 +14,7 @@ describe('Hobby Routes', () => {
 
     describe('GET /hobbies/:hobbyId/info', () => {
         it('should return hobby info', async () => {
-            const hobbyId = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const hobbyId = '609f34a038d26817dc0f5467';
             const hobbyName = 'Example Hobby';
 
             mockingoose(Hobby).toReturn({ _id: hobbyId, name: hobbyName }, 'findOne');
@@ -29,8 +29,8 @@ describe('Hobby Routes', () => {
 
     describe('POST /hobbies/:author/:hobby', () => {
         it('should join a hobby', async () => {
-            const userId = '609f34a038d26817dc0f5468'; // Example user ID
-            const hobbyId = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const userId = '609f34a038d26817dc0f5468';
+            const hobbyId = '609f34a038d26817dc0f5467';
             const username = 'username'
 
             const mockUser = { _id: userId, hobbies: [], username: username };
@@ -47,8 +47,8 @@ describe('Hobby Routes', () => {
 
     describe('POST hobbies/:author/:hobby/leave', () => {
         it('should leave a hobby', async () => {
-            const userId = '609f34a038d26817dc0f5468'; // Example user ID
-            const hobbyId = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const userId = '609f34a038d26817dc0f5468';
+            const hobbyId = '609f34a038d26817dc0f5467';
             const username = 'username'
 
             const mockUser = { _id: userId, username: username, hobbies: [hobbyId] };
@@ -66,7 +66,7 @@ describe('Hobby Routes', () => {
     describe('POST /hobbies/getId', () => {
         it('should return hobby ID', async () => {
             const hobbyName = 'Example Hobby';
-            const hobbyId = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const hobbyId = '609f34a038d26817dc0f5467';
 
 
             mockingoose(Hobby).toReturn({ _id: hobbyId }, 'findOne');
@@ -83,12 +83,12 @@ describe('Hobby Routes', () => {
 
 describe('Post Routes', () => {
     afterEach(() => {
-        mockingoose.resetAll(); // Reset Mockingoose after each test
+        mockingoose.resetAll();
     });
 
     describe('POST posts/:author/newpost', () => {
         it('should create a new post', async () => {
-            const userId = '609f34a038d26817dc0f5468'; // Example user ID
+            const userId = '609f34a038d26817dc0f5468';
             const username = 'username';
             const hobbyName = 'Example Hobby';
 
@@ -142,7 +142,7 @@ describe('Post Routes', () => {
 
     describe('DELETE /posts/delete', () => {
         it('should delete a post', async () => {
-            const postId = '609f34a038d26817dc0f5467'; // Example post ID
+            const postId = '609f34a038d26817dc0f5467';
 
 
             mockingoose(Post).toReturn({_id: postId}, 'findOne');
@@ -158,7 +158,7 @@ describe('Post Routes', () => {
 
     describe('POST /posts/comment', () => {
         it('should add a comment to a post', async () => {
-            const postId = '609f34a038d26817dc0f5467'; // Example post ID
+            const postId = '609f34a038d26817dc0f5467';
             const isoDate = '2011-10-05T14:48:00.000Z';
             mockingoose(Post).toReturn({ _id: postId, timestamp: isoDate}, 'findOne');
             mockingoose(Post).toReturn({}, 'save');
@@ -210,7 +210,7 @@ describe('User Routes', () => {
 
     describe('GET /users/:user/specific', () => {
         it('should return user profile', async () => {
-            const userId = '609f34a038d26817dc0f5468'; // Example user ID
+            const userId = '609f34a038d26817dc0f5468';
             const username = 'exampleuser';
 
             const mockUser = { _id: userId, username: username };
@@ -226,8 +226,8 @@ describe('User Routes', () => {
 
     describe('GET /users/:user/hobbies', () => {
         it('should return user hobbies', async () => {
-            const userId = '609f34a038d26817dc0f5468'; // Example user ID
-            const hobbyId = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const userId = '609f34a038d26817dc0f5468';
+            const hobbyId = '609f34a038d26817dc0f5467';
             const hobbyName = 'Example Hobby';
 
             const mockUser = { _id: userId, hobbies: [hobbyId] };
@@ -278,7 +278,7 @@ describe('User Routes', () => {
             const lastname = 'Doe';
             const username = 'johndoe';
             const password = 'password';
-            const chosen = '609f34a038d26817dc0f5467'; // Example hobby ID
+            const chosen = '609f34a038d26817dc0f5467';
             const profilepic = 'profilepic.jpg';
 
             const newUser = {
@@ -305,7 +305,7 @@ describe('User Routes', () => {
 
             const response = await request(app)
                 .post('/users/newuser')
-                .send({}) // Empty request body to simulate failure
+                .send({})
                 .expect(200);
 
             expect(response.body).toEqual(expect.objectContaining({message: expect.stringContaining('')}))
