@@ -2,7 +2,8 @@ Aparajita Sarkar:
 The contributions that I made to this project were mostly on the backend side. I was in charge of creating 
 implementing the business logic such that all the functionality that was visible to users on the front end
 was correctly being processed in the backend. I was in charge of creating the models in the database, 
-the routes, and the controllers. I also did a few frontend-backend integrations, such as the signup page, 
+the routes, and the controllers. This involved using node.js, express, creating routes, as well as setting up the 
+connection to our database, MongoDB. I also did a few frontend-backend integrations, such as the signup page, 
 once the page was created by the frontend team. I was responsible for taking all the information in that
 integration and formatting it such that users were successfully able to create their accounts and then log in. 
 Any time there was trouble in the frontend where they weren't properly either being able to send or recieve information 
@@ -12,12 +13,27 @@ contributions that I have made to the project was through working on certain sli
 presentations. 
 
 Shira Ben-Anat:
+My contributions to the project were mainly done on the frontend, I created several of the components and 
+pages for the application. I created the main feed, hobby, and profile pages, as well as the Calendar. 
+I used Preline templates and found an HTML/CSS template for the Calendar which I modified and I implemented 
+the display to be dynamic. I also worked with several other features, such as creating a post, writing and 
+displaying comments, liking posts, filtering posts on the profile page, displaying hobbies in the searchbar 
+dropdown, and coloring hobbies in the sidebar. I worked with backend using axios calls to send and receive 
+information from the server. I also helped out with various bug fixes and some of the slides for our presentations,
+as well as keeping us on track with a google doc where we listed tasks and which allowed us to assign certain tasks to 
+ourselves to maximize productivity.
 
 
 Mariana Jaramillo:
 
 
 Luke Waldow:
-
+I made varied contributions, principally implementing testing for the backend, involving creating a test framework 
+using jest, supertest, and mockingoose for testing api calls, and creating unit tests for each api function. This also 
+necessitated backend refactoring, particularly separating the express application from the server to facilitate testing 
+the application, and some bug fixes in the api functions. I also assisted in beginning setup for the express application. 
+I also made contributions to the frontend, through some layout fixes like fixing correct layout of posts made by the current 
+user, and fixed bugs in the site's appearance when the system is set to dark mode. I also made non-technical contributions
+through the group's joint work on homework and exercises, and recorded videos for the presentation feature demos.
 
 Claudia Zhu:
