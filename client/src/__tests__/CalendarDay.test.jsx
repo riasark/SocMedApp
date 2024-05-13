@@ -19,7 +19,7 @@ describe('CalendarDay', () => {
     const originalDate = global.Date;
     global.Date = jest.fn(() => new originalDate('2024-05-25T00:00:00Z'));
     const { container } = render(<CalendarDay d={{ day: 25, active: true }} />);
-    expect(container.firstChild).toHaveClass('calendar__day');
+    expect(container.firstChild).toHaveClass('calendar__date');
     global.Date = originalDate; // Restore original Date object
   });
 });

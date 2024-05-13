@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CalendarWeek from './CalendarWeek';
+import CalendarWeek from '../components/CalendarWeek';
 
 describe('CalendarWeek', () => {
   const week = {
