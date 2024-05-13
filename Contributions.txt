@@ -1,6 +1,6 @@
 Aparajita Sarkar:
 The contributions that I made to this project were mostly on the backend side. I was in charge of creating 
-implementing the business logic such that all the functionality that was visible to users on the front end
+and implementing the business logic such that all the functionality that was visible to users on the front end
 was correctly being processed in the backend. I was in charge of creating the models in the database, 
 the routes, and the controllers. This involved using node.js, express, creating routes, as well as setting up the 
 connection to our database, MongoDB. I also did a few frontend-backend integrations, such as the signup page, 
