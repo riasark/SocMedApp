@@ -25,6 +25,14 @@ ourselves to maximize productivity.
 
 
 Mariana Jaramillo:
+My contributions to the project were mainly focused on front end, while I made an effort to contribute to back end,
+specifically for the Calendar component, I felt as though my strong suit was helping front end. I created a couple of the 
+components for the pages. I mainly used Preline templates to create the Sign Up and Landing Page. Additionally, I went 
+in to tweak several front end pages mainly to maintain uniformity among the Sign Up, Sign in, and Landing Pages. 
+My goal was to make the transition between pages for an overall seamless user experience, while maintaining aesthetics. 
+I kept track of these tasks with my group members on a shared google doc. This was incredibly useful for communicating with
+team members that were focusing on backend to integrate my front end components. Furthermore, I kept up with communciation 
+with my teammates for presentations and overall productivity. 
 
 
 Luke Waldow:
