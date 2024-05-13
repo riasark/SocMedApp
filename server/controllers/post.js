@@ -117,6 +117,7 @@ export const comment = async (req, res) => {
         const post = await Post.findById(id);
         post.comments.push(content);
         await post.save();
+        res.json({})
     } catch (err){
         res.json({message: err.message});
     }
