@@ -36,7 +36,7 @@ In the terminal that is on the backend folder (server), type the command _npm in
 In the terminal that is on the frontend folder (client), type the command _npm install_ to install all the node packages that are necessary to run the client-side. Then, you can type the command _npm run start_, in order to see the user interface and interact with it. 
 
 ## 5. Localhost
-Navigate to **localhost:3000/login** in order to find the login page for our site. 
+Navigate to **localhost:3000/** in order to find the landing page for our site. 
 
 **_If possible, visit the localhost on safari rather than Chrome. It works and looks better._**
 
