@@ -142,7 +142,7 @@ const Header = ({ onOpenModal }) => {
         </div>
 
         {/* <!-- SearchBox Dropdown --> */}
-        <div class="absolute z-50 w-full bg-white border border-gray-200 rounded-lg dark:bg-neutral-800 dark:border-neutral-700" style={isDropdownOpen ? {} : {display: "none"}} data-hs-combo-box-output="">
+        <div class="absolute z-50 w-full bg-white border border-gray-200 rounded-lg dark:bg-neutral-800 dark:border-neutral-700" aria-label="drop-down" style={isDropdownOpen ? {} : {display: "none"}} data-hs-combo-box-output="">
           <div class="max-h-72 rounded-b-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500" data-hs-combo-box-output-items-wrapper="">
           {allHobbies.map((hobby, index) => (
             <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href={`/hobby?userId=${userId}&hobbyId=${hobby._id}`} key={index} value={hobby._id}>
