@@ -37,3 +37,10 @@ user, and fixed bugs in the site's appearance when the system is set to dark mod
 through the group's joint work on homework and exercises, and recorded videos for the presentation feature demos.
 
 Claudia Zhu:
+I mostly worked on the frontend side, looking at how to implement the proposed user interface into React components and integrate them,
+with the backend. However most of my work was doing unit tests on the front end using Jest. I made unit tests that made sure the user 
+interface was working as expected with user interaction, for example if a drop down menu appeared if a user clicked in the search bar
+and dispeared if they clicked away from it. I also used Snapshot tests as unit tests to detect unexpected changes in the UI. This made for
+a quick and easy way to test the interface. Additionally, I worked on the search bar component, fetching from backend from axios to get
+possible hobbies that a user could look for. Lastly, with all the group members, we all helped creating the mid-point presentations and final
+presentations, creating tech stack diagrams for easy communication of our project and plans. 
